@@ -5,7 +5,7 @@ public class Lab {
     public static void main(String[] args) {
 
 
-        File folder = new File("./src/main");
+        File folder = new File("./resources");
         File[] listOfFiles = folder.listFiles();
 
         for (int i = 0; i < listOfFiles.length; i++) {

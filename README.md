@@ -10,7 +10,7 @@ Kocaeli universitesi, prolab II I
 
 <p>
 Bu bir oyun programıdır.
-İyi karakterler ve kötü karakterler bulunmakta.
+İyi nalain.karakterler ve kötü nalain.karakterler bulunmakta.
 kullanıcı birbirinden ayrı özellikleri olan iyi karakterlerden herhangi birini seçtikten sonra oyunu başlatmaktadır.
 Oyuncunun amacı labirent çıkışına kötü karakterlere yakalanmadan varabilmektir.
 Kötü karakterlerin türü, sayısı ve labirentin hangi kapısında olacağı verilen Harita.txt dosyasında yazmaktadır.
@@ -23,14 +23,14 @@ yakalandığında ise iyi karakterin canı bitene değin yeniden başlamaktadır
 
 Here are characters and classes at your disposal all of them have different props
 
-* darthvader
+* nalain.karakterler.Darthvader
 * karakter
-* kyloren
-* location
-* LukeSkyWalker
-* MasterYoda
-* stormtrooper
-* userinterface
+* nalain.karakterler.Kyloren
+* nalain.maze.Location
+* nalain.karakterler.LukeSkyWalker
+* nalain.karakterler.MasterYoda
+* nalain.karakterler.Stormtrooper
+* nalain.Userinterface
 
 
 <!--
@@ -58,7 +58,7 @@ gibi kütüphanelerden yararlanılmıştır.
 Proje kurulumu oldukça açıklayıcıdır. Projeyi yerel makinenize klonladıktan sonra,
 favori IDE'nizi kullanarak projeyi içe aktarın ve maven kullanarak oluşturun. and you are good to go...
 
-![algorithm running](res/running.jpg)
+![algorithm running](resources/running.jpg)
 
 ### Installation
 1. Clone the repo
