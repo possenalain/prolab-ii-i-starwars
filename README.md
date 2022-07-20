@@ -15,12 +15,13 @@ kullanıcı birbirinden ayrı özellikleri olan iyi karakterlerden herhangi biri
 Oyuncunun amacı labirent çıkışına kötü karakterlere yakalanmadan varabilmektir.
 Kötü karakterlerin türü, sayısı ve labirentin hangi kapısında olacağı verilen Harita.txt dosyasında yazmaktadır.
 Kullanıcı çıkışa varana veya kötü karakter, iyi karakteri yakalayana dek oyun devam etmekte;
+<!--
 yakalandığında ise iyi karakterin canı bitene değin yeniden başlamaktadır.
 </p>
 <div style="margin:1% 10%;">
 <img alt="project screenshot" align="center" height="500" src="res/finalstate.jpg" width="500"/>
 </div>
-
+-->
 
 ### Built With
 
