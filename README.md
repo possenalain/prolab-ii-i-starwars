@@ -15,9 +15,25 @@ kullanıcı birbirinden ayrı özellikleri olan iyi karakterlerden herhangi biri
 Oyuncunun amacı labirent çıkışına kötü karakterlere yakalanmadan varabilmektir.
 Kötü karakterlerin türü, sayısı ve labirentin hangi kapısında olacağı verilen Harita.txt dosyasında yazmaktadır.
 Kullanıcı çıkışa varana veya kötü karakter, iyi karakteri yakalayana dek oyun devam etmekte;
-<!--
+
 yakalandığında ise iyi karakterin canı bitene değin yeniden başlamaktadır.
 </p>
+
+## Usage
+
+Here are characters and classes at your disposal all of them have different props
+
+* darthvader
+* karakter
+* kyloren
+* location
+* LukeSkyWalker
+* MasterYoda
+* stormtrooper
+* userinterface
+
+
+<!--
 <div style="margin:1% 10%;">
 <img alt="project screenshot" align="center" height="500" src="res/finalstate.jpg" width="500"/>
 </div>
@@ -54,7 +70,6 @@ favori IDE'nizi kullanarak projeyi içe aktarın ve maven kullanarak oluşturun.
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
 
 
 <!-- ROADMAP -->
