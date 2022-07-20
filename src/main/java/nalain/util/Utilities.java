@@ -13,7 +13,6 @@ public class Utilities {
 
     static ArrayList<String> characters = new ArrayList<String>();
     static ArrayList<String> maze = new ArrayList<String>();
-
     public static PortableGameSetup portableGameSetup = PortableGameSetup.getInstance();
 
     public static void isGameOVer() {
@@ -61,7 +60,8 @@ public class Utilities {
 
         Scanner scan = new Scanner(System.in);
         System.out.println("[skywalker:1] [Master yoda:2]:");
-        int choice = scan.nextInt();
+
+      int choice = scan.nextInt();;
 
         if (choice == 1)
             portableGameSetup.setIyikarakter(new LukeSkyWalker());
@@ -69,7 +69,6 @@ public class Utilities {
             portableGameSetup.setIyikarakter(new MasterYoda());
 
     }
-
     public static void initializeBadCharacters() {
 
         for (int i = 0; i < characters.size(); i++) {
@@ -90,11 +89,11 @@ public class Utilities {
             if (karacter != null) {
                 karacter.setKapi(splittedrow[3]);
                 karacter.setCurrentlocation(portableGameSetup.getLabyrinth().getDoor(splittedrow[3]));
+
                 portableGameSetup.getKotukarakter().add(karacter);
             }
         }
     }
-
     public static void resetTheGame() {
         for (Karakter karakter : portableGameSetup.getKotukarakter()) {
             karakter.reset();

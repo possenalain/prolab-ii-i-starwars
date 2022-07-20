@@ -7,7 +7,6 @@ import nalain.maze.Labyrinth;
 import java.util.ArrayList;
 
 public class PortableGameSetup {
-
     String BASE_PATH_RESOURCES = "./resources/";
     Karakter iyikarakter;
     ArrayList<Karakter> kotukarakter;
@@ -36,7 +35,6 @@ public class PortableGameSetup {
     public Karakter getIyikarakter() {
         return iyikarakter;
     }
-
     public void setIyikarakter(Karakter iyikarakter) {
         this.iyikarakter = iyikarakter;
     }

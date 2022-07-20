@@ -3,7 +3,7 @@ import nalain.maze.Location;
 
 public class MasterYoda extends Karakter {
 
-	public void MasterYoda() {
+	public  MasterYoda() {
 		this.stepSize=1;
 		this.setCan(6);
 		this.setName("masteryoda");

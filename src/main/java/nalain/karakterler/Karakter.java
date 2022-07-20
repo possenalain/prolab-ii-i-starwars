@@ -310,7 +310,6 @@ public class Karakter extends AllCharacters {
     }
 
 
-
     @Override
     public String toString() {
 
