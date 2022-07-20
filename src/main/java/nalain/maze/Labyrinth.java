@@ -1,19 +1,16 @@
 package nalain.maze;
-
 public class Labyrinth {
-
     int sizeX=11;
     int sizeY=14;
-
+    public int[][] mazearray;
+    public Labyrinth(){
+        this.mazearray= new int[11][14];
+    }
     public Labyrinth(int x, int y){
         this.sizeX=x;
         this.sizeY=y;
+        this.mazearray= new int[x][y];
     }
-    public int[][] mazearray;
-    Labyrinth(){
-        this.mazearray= new int[11][14];
-    }
-
     public Location getDoor(String door) {
 
         int doorsX[]={0,4,12,13,4};
@@ -36,8 +33,6 @@ public class Labyrinth {
 
         return null;
     }
-
-
     public Boolean isObstacle(int x, int y) {
         if (mazearray[y][x] == 1) {
             return false;

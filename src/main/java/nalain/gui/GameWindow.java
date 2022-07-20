@@ -1,10 +1,16 @@
 package nalain.gui;
 
+import nalain.PortableGameSetup;
+import nalain.util.Utilities;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 public class GameWindow {
 
-    String BASE_PATH_RESOURCES = "./resources/";
+    PortableGameSetup portableGameSetup=PortableGameSetup.getInstance();
     JPanel mazepane;
     public JFrame mazeframe;
     HealthPanel healthpane;
@@ -61,10 +67,10 @@ public class GameWindow {
 
         toolkit = Toolkit.getDefaultToolkit();
 
-        Image left = toolkit.getImage(BASE_PATH_RESOURCES + "images/left.png");
-        Image right = toolkit.getImage(BASE_PATH_RESOURCES + "images/right.png");
-        Image up = toolkit.getImage(BASE_PATH_RESOURCES + "images/up.png");
-        Image down = toolkit.getImage(BASE_PATH_RESOURCES + "images/down.png");
+        Image left = toolkit.getImage(portableGameSetup.getBASE_PATH_RESOURCES()+ "images/left.png");
+        Image right = toolkit.getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/right.png");
+        Image up = toolkit.getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/up.png");
+        Image down = toolkit.getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/down.png");
 
 
          leftindications = new SignsPanel(0, 250, right, 0);
@@ -82,13 +88,60 @@ public class GameWindow {
         topindications.setSize(700, 50);
         bottomindications.setSize(700, 50);
 
+        bindKeylisteners();
     }
+    private void bindKeylisteners() {
+        KeyListener keys;
 
+        GameWindow gameWindow=this;
+        keys = new KeyListener() {
 
+            public void keyPressed(KeyEvent evt) {
+                switch (evt.getKeyCode()) {
+
+                    case KeyEvent.VK_DOWN:
+                        if (portableGameSetup.getIyikarakter().getCurrentlocation().getY() != 10)
+                            Utilities.moveDown();
+                        break;
+
+                    case KeyEvent.VK_UP:
+                        if (portableGameSetup.getIyikarakter().getCurrentlocation().getY() != 0)
+                            Utilities.moveUp();
+                        break;
+
+                    case KeyEvent.VK_LEFT:
+                        if (portableGameSetup.getIyikarakter().getCurrentlocation().getX() != 0)
+                            Utilities.moveLeft();
+                        break;
+
+                    case KeyEvent.VK_RIGHT:
+                        if (portableGameSetup.getIyikarakter().getCurrentlocation().getX() == 13 && portableGameSetup.getIyikarakter().getCurrentlocation().getY() == 9) {
+                            Utilities.isGameOVer();
+                        }
+                        if (portableGameSetup.getIyikarakter().getCurrentlocation().getX() != 13) {
+                            Utilities.moveRight();
+                        }
+                        break;
+                }
+
+                Utilities.yolhesapla();
+                gameWindow.repaintWindow();
+            }
+            public void keyReleased(KeyEvent e) {
+                // TODO  for now it is not needed
+            }
+            public void keyTyped(KeyEvent e) {
+                // not needed
+            }
+        };
+        gameWindow.mazeframe.addKeyListener(keys);
+    }
     public void repaintWindow(){
 
+        healthpane.repaint();
         pathpane.repaint();
         mazepane.repaint();
+        mazeframe.repaint();
     }
 
 }

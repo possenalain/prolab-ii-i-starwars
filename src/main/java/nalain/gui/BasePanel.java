@@ -1,12 +1,7 @@
 package nalain.gui;
-
-import nalain.maze.Labyrinth;
-
+import nalain.PortableGameSetup;
 import javax.swing.*;
 
 public class BasePanel extends JPanel {
-
-    Labyrinth labyrinth;
-    String BASE_PATH_RESOURCES = "./resources/";
-
+    PortableGameSetup portableGameSetup= PortableGameSetup.getInstance();
 }

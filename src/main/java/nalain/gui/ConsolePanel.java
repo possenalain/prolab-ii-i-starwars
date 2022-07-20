@@ -1,23 +1,16 @@
 package nalain.gui;
 
+import nalain.PortableGameSetup;
 import nalain.karakterler.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class ConsolePanel extends BasePanel {
-    ArrayList<Karakter> kotukarakter;
-
-    public ConsolePanel(){
-        //TODO
-        kotukarakter=null;
-    }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setFont(new Font ("TimesRoman", Font.BOLD, 20));
-
         int i=0;
-        for(Karakter karakter:kotukarakter) {
+        for(Karakter karakter:portableGameSetup.getKotukarakter()) {
             g.setColor(Color.white);
             if(karakter.getEnkisayol().size()>0) {
                 if(karakter.getName().equalsIgnoreCase("Kyloren")) {
