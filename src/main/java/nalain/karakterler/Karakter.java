@@ -32,5 +32,14 @@ public abstract class Karakter extends CharactersFeatures {
                 ", hedef=" + hedef +
                 '}';
     }
+    @Override
+    protected void log() {
+        String message="";
+        message+= "name=" + name +
+                ", at " + currentlocation +
+                ", Target " + hedef +
+                ", in  " + calculateSteps() + " steps";
+        portableGameSetup.getLogger().log(message);
+    }
 }
 

@@ -4,6 +4,7 @@ import nalain.util.Utilities;
 
 import javax.swing.*;
 import java.io.IOException;
+
 public class Userinterface {
     PortableGameSetup portableGameSetup;
     Userinterface() {

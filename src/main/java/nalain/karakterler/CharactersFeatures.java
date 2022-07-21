@@ -38,4 +38,11 @@ public abstract class CharactersFeatures {
     protected  abstract void moveAutomatically();
     protected abstract void move();
     protected abstract  void moveTo(Location location);
+    protected abstract void log();
+    protected int calculateSteps() {
+
+        //TODO add implementatioon
+
+        return 0;
+    }
 }

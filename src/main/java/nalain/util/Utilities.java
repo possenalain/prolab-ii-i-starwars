@@ -57,6 +57,7 @@ public class Utilities {
             }
         }
     }
+
     public static void initializeGoodCharacter() {
 
         Scanner scan = new Scanner(System.in);
@@ -71,6 +72,7 @@ public class Utilities {
             portableGameSetup.setIyikarakter(new MasterYoda());
 
     }
+
     public static void initializeBadCharacters() {
 
         for (int i = 0; i < characters.size(); i++) {
@@ -96,15 +98,10 @@ public class Utilities {
             }
         }
     }
+
     public static void InitializeGameWindow() {
         GameWindow gameWindow = new GameWindow();
         portableGameSetup.setGameWindow(gameWindow);
-    }
-    public static void resetTheGame() {
-        for (Karakter karakter : portableGameSetup.getKotukarakter()) {
-            karakter.reset();
-        }
-        portableGameSetup.getIyikarakter().reset();
     }
 
 }

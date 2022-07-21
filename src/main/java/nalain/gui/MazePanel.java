@@ -4,7 +4,7 @@ import nalain.karakterler.Karakter;
 import nalain.karakterler.good.LukeSkyWalker;
 import nalain.karakterler.good.MasterYoda;
 import nalain.maze.Location;
-import nalain.util.Utilities;
+import nalain.util.Game;
 
 import java.awt.*;
 
@@ -135,11 +135,10 @@ public class MazePanel extends BasePanel {
 
                     if (nextlife.getCan() >= 1) {
 
-
                         System.out.println("remaining life cycles " + nextlife.getCan());
                         portableGameSetup.setIyikarakter(nextlife);
 
-                        Utilities.resetTheGame();
+                        Game.resetTheGame();
 
                     } else {
                         //GAME OVER
@@ -163,7 +162,7 @@ public class MazePanel extends BasePanel {
                     if (nextlife.getCan() >= 1) {
                         System.out.println("remaining life cycles " + nextlife.getCan());
                         portableGameSetup.setIyikarakter(nextlife);
-                        Utilities.resetTheGame();
+                        Game.resetTheGame();
                     } else {
                         //GAME OVER
                         g.setColor(Color.getHSBColor(0, 0, 0));

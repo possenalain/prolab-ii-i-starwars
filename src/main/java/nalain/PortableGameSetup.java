@@ -7,6 +7,8 @@ import nalain.karakterler.Karakter;
 import nalain.karakterler.bad.BadCharacter;
 import nalain.karakterler.good.GoodCharacter;
 import nalain.maze.Labyrinth;
+import nalain.util.Logger;
+
 import java.util.ArrayList;
 @Getter
 @Setter
@@ -18,11 +20,13 @@ public class PortableGameSetup {
     ArrayList<BadCharacter> kotukarakter;
     Labyrinth labyrinth;
     Boolean isGameOver;
+    Logger logger=null;
     GameWindow gameWindow;
     private static PortableGameSetup portableGameSetup = null;
     private PortableGameSetup() {
         kotukarakter = new ArrayList<BadCharacter>();
         labyrinth = new Labyrinth();
+        logger.getInstance();
         isGameOver = false;
     }
     public static PortableGameSetup getInstance() {

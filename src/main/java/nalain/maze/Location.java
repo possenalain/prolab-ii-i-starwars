@@ -32,4 +32,12 @@ public class Location implements Comparable<Location> {
 		cost=0;
 		this.shortpath=new ArrayList<Location>();
 	}
+
+	@Override
+	public String toString() {
+		return "{" +
+				"x=" + x +
+				", y=" + y +
+				'}';
+	}
 }

@@ -1,7 +1,6 @@
 package nalain.gui;
 
 import nalain.PortableGameSetup;
-import nalain.util.Utilities;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,9 +12,10 @@ public class GameWindow {
     JPanel mazepane;
     JFrame mazeframe;
     HealthPanel healthpane;
-    ConsolePanel pathpane;
+    ConsolePanel logsPanel;
     SignsPanel leftindications, rightindications, bottomindications, topindications;
     Toolkit toolkit;
+
     public GameWindow() {
 
         mazeframe = new JFrame();
@@ -34,33 +34,41 @@ public class GameWindow {
         healthpane = new HealthPanel();
 
         healthpane.setBackground(Color.black);
-        pathpane = new ConsolePanel();
-        pathpane.setBackground(Color.getHSBColor(112, (float) 0.38, (float) 0.12));
+
+        logsPanel = new ConsolePanel();
+        logsPanel.setBackground(Color.getHSBColor(112, (float) 0.38, (float) 0.12));
 
         mazepane.setLocation(100, 150);
         mazepane.setSize(700, 550);
         mazepane.setBackground(Color.white);
 
         healthpane.setSize(300, 50);
-        pathpane.setSize(500, 100);
+        logsPanel.setSize(500, 100);
 
         healthpane.setLocation(550, 25);
-        pathpane.setLocation(100, 750);
+        logsPanel.setLocation(100, 750);
 
         setupSignsPanel();
 
         cont.add(mazepane);
+
+
         cont.setBackground(Color.getHSBColor(74, (float) 0.10, (float) 0.12));
         cont.add(leftindications);
         cont.add(rightindications);
         cont.add(topindications);
         cont.add(bottomindications);
+
+
         cont.add(healthpane);
-        cont.add(pathpane);
+        cont.add(logsPanel);
 
         mazeframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mazeframe.setVisible(true);
+
+        bindKeylisteners();
     }
+
     private void setupSignsPanel() {
 
         toolkit = Toolkit.getDefaultToolkit();
@@ -86,8 +94,9 @@ public class GameWindow {
         topindications.setSize(700, 50);
         bottomindications.setSize(700, 50);
 
-        bindKeylisteners();
+
     }
+
     private void bindKeylisteners() {
         KeyListener keys;
         GameWindow gameWindow = this;
@@ -116,6 +125,7 @@ public class GameWindow {
                 portableGameSetup.moveHunters();
                 gameWindow.repaintWindow();
             }
+
             public void keyReleased(KeyEvent e) {
                 // TODO  for now it is not needed
             }
@@ -126,10 +136,11 @@ public class GameWindow {
         };
         gameWindow.mazeframe.addKeyListener(keys);
     }
+
     public void repaintWindow() {
 
         healthpane.repaint();
-        pathpane.repaint();
+        logsPanel.repaint();
         mazepane.repaint();
         mazeframe.repaint();
     }

@@ -13,8 +13,7 @@ public class BadCharacter extends Karakter {
 
         if (!this.getEnkisayol().isEmpty())
             this.setCurrentlocation(this.getEnkisayol().remove(0));
-
-        this.logShortestPath();
+        this.log();
     }
     @Override
     protected void moveTo(Location location) {
