@@ -15,7 +15,6 @@ public class Userinterface {
             Utilities.initializeBadCharacters();
             Utilities.InitializeGameWindow();
         } catch (IOException e) {
-
         }
     }
     public static void main(String args[]) {
@@ -24,7 +23,6 @@ public class Userinterface {
                 new Userinterface();
             }
         });
-
     }
 
 }

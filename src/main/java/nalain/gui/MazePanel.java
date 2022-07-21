@@ -1,8 +1,8 @@
 package nalain.gui;
 
 import nalain.karakterler.Karakter;
-import nalain.karakterler.LukeSkyWalker;
-import nalain.karakterler.MasterYoda;
+import nalain.karakterler.good.LukeSkyWalker;
+import nalain.karakterler.good.MasterYoda;
 import nalain.maze.Location;
 import nalain.util.Utilities;
 

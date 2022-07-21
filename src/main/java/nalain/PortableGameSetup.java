@@ -4,20 +4,24 @@ import lombok.Getter;
 import lombok.Setter;
 import nalain.gui.GameWindow;
 import nalain.karakterler.Karakter;
+import nalain.karakterler.bad.BadCharacter;
+import nalain.karakterler.good.GoodCharacter;
 import nalain.maze.Labyrinth;
 import java.util.ArrayList;
 @Getter
 @Setter
 public class PortableGameSetup {
+
     String BASE_PATH_RESOURCES = "./resources/";
-    Karakter iyikarakter;
-    ArrayList<Karakter> kotukarakter;
+
+    GoodCharacter iyikarakter;
+    ArrayList<BadCharacter> kotukarakter;
     Labyrinth labyrinth;
     Boolean isGameOver;
     GameWindow gameWindow;
     private static PortableGameSetup portableGameSetup = null;
     private PortableGameSetup() {
-        kotukarakter = new ArrayList<Karakter>();
+        kotukarakter = new ArrayList<BadCharacter>();
         labyrinth = new Labyrinth();
         isGameOver = false;
     }
@@ -32,5 +36,10 @@ public class PortableGameSetup {
     }
     public Boolean isGameOver() {
         return getIsGameOver();
+    }
+
+    public void moveHunters(){
+        for(BadCharacter hunter: this.getKotukarakter())
+            hunter.moveAutomatically();
     }
 }

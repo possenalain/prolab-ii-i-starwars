@@ -6,13 +6,12 @@ import java.util.ArrayList;
 @Getter
 @Setter
 
-public class Location {
+public class Location implements Comparable<Location> {
 	private int x;
 	private int y;
 	Boolean duvar;
 	ArrayList<Location> shortpath;
 	int cost;
-
 	public Location() {
 		duvar=false;
 		cost=0;
@@ -24,5 +23,8 @@ public class Location {
 		this.duvar=false;
 		this.shortpath=new ArrayList<Location>();
 	}
-
+	@Override
+	public int compareTo(Location o) {
+		return this.getCost()-o.getCost();
+	}
 }

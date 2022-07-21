@@ -2,7 +2,14 @@ package nalain.util;
 
 import nalain.PortableGameSetup;
 import nalain.gui.GameWindow;
-import nalain.karakterler.*;
+import nalain.karakterler.Karakter;
+import nalain.karakterler.bad.BadCharacter;
+import nalain.karakterler.bad.Darthvader;
+import nalain.karakterler.bad.Kyloren;
+import nalain.karakterler.bad.Stormtrooper;
+import nalain.karakterler.good.LukeSkyWalker;
+import nalain.karakterler.good.MasterYoda;
+import nalain.maze.Location;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,17 +18,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Utilities {
-    public static PortableGameSetup portableGameSetup = PortableGameSetup.getInstance();
 
+    public static PortableGameSetup portableGameSetup = PortableGameSetup.getInstance();
     static ArrayList<String> characters = new ArrayList<String>();
     static ArrayList<String> maze = new ArrayList<String>();
-
-    public static void isGameOVer() {
-        if (portableGameSetup.getIyikarakter().getCurrentlocation().getX() == 13
-                && portableGameSetup.getIyikarakter().getCurrentlocation().getY() == 9) {
-            portableGameSetup.setIsGameOver(true);
-        }
-    }
     public static void initializeFromFile() throws IOException {
         BufferedReader filein = null;
         try {
@@ -45,17 +45,18 @@ public class Utilities {
 
         filein.close();
     }
-
     public static void initializeMazeArray() {
-
         for (int i = 0; i < maze.size(); i++) {
             String row[] = maze.get(i).split("\\s+");
             for (int j = 0; j < row.length; j++) {
                 portableGameSetup.getLabyrinth().mazearray[i][j] = Integer.valueOf(row[j]);
+                Location loc = new Location(j, i);
+                if (Integer.valueOf(row[j]) == 0)
+                    loc.setDuvar(true);
+                portableGameSetup.getLabyrinth().mazeArrayWithLocations[i][j] = loc;
             }
         }
     }
-
     public static void initializeGoodCharacter() {
 
         Scanner scan = new Scanner(System.in);
@@ -70,7 +71,6 @@ public class Utilities {
             portableGameSetup.setIyikarakter(new MasterYoda());
 
     }
-
     public static void initializeBadCharacters() {
 
         for (int i = 0; i < characters.size(); i++) {
@@ -78,8 +78,7 @@ public class Utilities {
             String row = characters.get(i);
             String splittedrow[] = row.split("\\W");
 
-            Karakter karacter = null;
-
+            BadCharacter karacter = null;
             if (splittedrow[1].equalsIgnoreCase("darthvader"))
                 karacter = new Darthvader();
 
@@ -91,12 +90,14 @@ public class Utilities {
             if (karacter != null) {
                 karacter.setKapi(splittedrow[3]);
                 karacter.setCurrentlocation(portableGameSetup.getLabyrinth().getDoor(splittedrow[3]));
-
                 portableGameSetup.getKotukarakter().add(karacter);
             }
         }
     }
-
+    public static void InitializeGameWindow() {
+        GameWindow gameWindow = new GameWindow();
+        portableGameSetup.setGameWindow(gameWindow);
+    }
     public static void resetTheGame() {
         for (Karakter karakter : portableGameSetup.getKotukarakter()) {
             karakter.reset();
@@ -104,63 +105,4 @@ public class Utilities {
         portableGameSetup.getIyikarakter().reset();
     }
 
-    public static void yolhesapla() {
-
-        for (Karakter karakter : portableGameSetup.getKotukarakter()) {
-            if (karakter.getName().equalsIgnoreCase("darthvader"))
-                karakter = (Darthvader) karakter;
-            else if (karakter.getName().equalsIgnoreCase("Stormtrooper"))
-                karakter = (Stormtrooper) karakter;
-
-            else if (karakter.getName().equalsIgnoreCase("Kyloren"))
-                karakter = (Kyloren) karakter;
-
-            karakter.setmazematrix(portableGameSetup.getLabyrinth().mazearray);
-            karakter.sethedef(portableGameSetup.getIyikarakter().getCurrentlocation());
-            karakter.EnKisaYol();
-        }
-    }
-
-
-    //TODO
-    // these move methods shouldn't be here
-
-    public static void moveUp() {
-        int x = portableGameSetup.getIyikarakter().getCurrentlocation().getX();
-        int y = portableGameSetup.getIyikarakter().getCurrentlocation().getY();
-        if (!portableGameSetup.getLabyrinth().isObstacle(x, (y - 1)))
-            portableGameSetup.getIyikarakter().getCurrentlocation().setY(y - 1);
-    }
-
-    public static void moveDown() {
-        int x = portableGameSetup.getIyikarakter().getCurrentlocation().getX();
-        int y = portableGameSetup.getIyikarakter().getCurrentlocation().getY();
-        if (!portableGameSetup.getLabyrinth().isObstacle(x, (y + 1)))
-            portableGameSetup.getIyikarakter().getCurrentlocation().setY(y + 1);
-    }
-
-    public static void moveLeft() {
-        int y = portableGameSetup.getIyikarakter().getCurrentlocation().getY();
-        int x = portableGameSetup.getIyikarakter().getCurrentlocation().getX();
-        if (!portableGameSetup.getLabyrinth().isObstacle((x - 1), y))
-            portableGameSetup.getIyikarakter().getCurrentlocation().setX(x - 1);
-    }
-
-    public static void moveRight() {
-        int y = portableGameSetup.getIyikarakter().getCurrentlocation().getY();
-        int x = portableGameSetup.getIyikarakter().getCurrentlocation().getX();
-
-        if (!portableGameSetup.getLabyrinth().isObstacle((x + 1), y))
-            portableGameSetup.getIyikarakter().getCurrentlocation().setX(x + 1);
-    }
-    public static void InitializeGameWindow() {
-        GameWindow gameWindow=new GameWindow();
-        portableGameSetup.setGameWindow(gameWindow);
-    }
-
-    public static void Display() {
-        for (Karakter karakter : portableGameSetup.getKotukarakter()) {
-            System.out.println(karakter.toString());
-        }
-    }
 }

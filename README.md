@@ -23,13 +23,13 @@ yakalandığında ise iyi karakterin canı bitene değin yeniden başlamaktadır
 
 Here are characters and classes at your disposal all of them have different props
 
-* nalain.karakterler.Darthvader
+* nalain.karakterler.bad.Darthvader
 * karakter
-* nalain.karakterler.Kyloren
+* nalain.karakterler.bad.Kyloren
 * nalain.maze.Location
-* nalain.karakterler.LukeSkyWalker
-* nalain.karakterler.MasterYoda
-* nalain.karakterler.Stormtrooper
+* nalain.karakterler.good.LukeSkyWalker
+* nalain.karakterler.good.MasterYoda
+* nalain.karakterler.bad.Stormtrooper
 * nalain.Userinterface
 
 

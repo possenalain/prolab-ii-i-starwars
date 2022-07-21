@@ -5,24 +5,30 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Labyrinth {
+public class Labyrinth implements Cloneable {
     int sizeX;
     int sizeY;
     public int[][] mazearray;
-    public Labyrinth(){
-        this.sizeX=11;
-        this.sizeY=14;
-        this.mazearray= new int[sizeX][sizeY];
+    public Location[][] mazeArrayWithLocations;
+
+    public Labyrinth() {
+        this.sizeY = 11;
+        this.sizeX = 14;
+        this.mazearray = new int[sizeY][sizeX];
+        mazeArrayWithLocations = new Location[sizeY][sizeX];
     }
-    public Labyrinth(int x, int y){
-        this.sizeX=x;
-        this.sizeY=y;
-        this.mazearray= new int[x][y];
+
+    public Labyrinth(int x, int y) {
+        this.sizeX = x;
+        this.sizeY = y;
+        this.mazearray = new int[sizeY][sizeX];
+        mazeArrayWithLocations = new Location[sizeY][sizeX];
     }
+
     public Location getDoor(String door) {
 
-        int doorsX[]={0,4,12,13,4};
-        int doorsY[]={5,0,0,5,10};
+        int doorsX[] = {0, 4, 12, 13, 4};
+        int doorsY[] = {5, 0, 0, 5, 10};
 
         if (door.equalsIgnoreCase("A"))
             return new Location(doorsX[0], doorsY[0]);
@@ -41,11 +47,17 @@ public class Labyrinth {
 
         return null;
     }
+
     public Boolean isObstacle(int x, int y) {
         if (mazearray[y][x] == 1) {
             return false;
         }
 
         return true;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

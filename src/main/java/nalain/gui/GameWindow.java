@@ -9,16 +9,13 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class GameWindow {
-
     PortableGameSetup portableGameSetup = PortableGameSetup.getInstance();
-
     JPanel mazepane;
     JFrame mazeframe;
     HealthPanel healthpane;
     ConsolePanel pathpane;
     SignsPanel leftindications, rightindications, bottomindications, topindications;
     Toolkit toolkit;
-
     public GameWindow() {
 
         mazeframe = new JFrame();
@@ -64,7 +61,6 @@ public class GameWindow {
         mazeframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mazeframe.setVisible(true);
     }
-
     private void setupSignsPanel() {
 
         toolkit = Toolkit.getDefaultToolkit();
@@ -94,42 +90,32 @@ public class GameWindow {
     }
     private void bindKeylisteners() {
         KeyListener keys;
-
         GameWindow gameWindow = this;
         keys = new KeyListener() {
 
             public void keyPressed(KeyEvent evt) {
+
                 switch (evt.getKeyCode()) {
 
                     case KeyEvent.VK_DOWN:
-                        if (portableGameSetup.getIyikarakter().getCurrentlocation().getY() != 10)
-                            Utilities.moveDown();
+                        portableGameSetup.getIyikarakter().moveDown();
                         break;
-
                     case KeyEvent.VK_UP:
-                        if (portableGameSetup.getIyikarakter().getCurrentlocation().getY() != 0)
-                            Utilities.moveUp();
+                        portableGameSetup.getIyikarakter().moveUp();
                         break;
 
                     case KeyEvent.VK_LEFT:
-                        if (portableGameSetup.getIyikarakter().getCurrentlocation().getX() != 0)
-                            Utilities.moveLeft();
+                        portableGameSetup.getIyikarakter().moveLeft();
                         break;
 
                     case KeyEvent.VK_RIGHT:
-                        if (portableGameSetup.getIyikarakter().getCurrentlocation().getX() == 13 && portableGameSetup.getIyikarakter().getCurrentlocation().getY() == 9) {
-                            Utilities.isGameOVer();
-                        }
-                        if (portableGameSetup.getIyikarakter().getCurrentlocation().getX() != 13) {
-                            Utilities.moveRight();
-                        }
+                        portableGameSetup.getIyikarakter().moveRight();
                         break;
                 }
 
-                Utilities.yolhesapla();
+                portableGameSetup.moveHunters();
                 gameWindow.repaintWindow();
             }
-
             public void keyReleased(KeyEvent e) {
                 // TODO  for now it is not needed
             }
