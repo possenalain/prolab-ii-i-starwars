@@ -1,4 +1,6 @@
 Karakter:Stormtrooper,Kapi:B
+Karakter:darthVader,Kapi:C
+Karakter:darthVader,Kapi:A
 0	0	0	0	1	0	0	0	0	0	0	0	1	0
 0	1	1	1	1	0	1	1	1	1	1	1	1	0
 0	1	0	1	1	1	1	0	1	0	0	0	1	0

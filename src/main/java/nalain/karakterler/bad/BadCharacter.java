@@ -16,7 +16,6 @@ public class BadCharacter extends Karakter {
 
         this.logShortestPath();
     }
-
     @Override
     protected void moveTo(Location location) {
 
