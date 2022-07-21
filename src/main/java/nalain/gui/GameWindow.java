@@ -10,14 +10,16 @@ import java.awt.event.KeyListener;
 
 public class GameWindow {
 
-    PortableGameSetup portableGameSetup=PortableGameSetup.getInstance();
+    PortableGameSetup portableGameSetup = PortableGameSetup.getInstance();
+
     JPanel mazepane;
-    public JFrame mazeframe;
+    JFrame mazeframe;
     HealthPanel healthpane;
     ConsolePanel pathpane;
-    SignsPanel leftindications,rightindications,bottomindications,topindications ;
-    Toolkit toolkit ;
-    public GameWindow(){
+    SignsPanel leftindications, rightindications, bottomindications, topindications;
+    Toolkit toolkit;
+
+    public GameWindow() {
 
         mazeframe = new JFrame();
         mazeframe.setTitle("STARWARs");
@@ -63,20 +65,20 @@ public class GameWindow {
         mazeframe.setVisible(true);
     }
 
-    private void setupSignsPanel(){
+    private void setupSignsPanel() {
 
         toolkit = Toolkit.getDefaultToolkit();
 
-        Image left = toolkit.getImage(portableGameSetup.getBASE_PATH_RESOURCES()+ "images/left.png");
+        Image left = toolkit.getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/left.png");
         Image right = toolkit.getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/right.png");
         Image up = toolkit.getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/up.png");
         Image down = toolkit.getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/down.png");
 
 
-         leftindications = new SignsPanel(0, 250, right, 0);
-         rightindications = new SignsPanel(0, 250, left, 2);
-         bottomindications = new SignsPanel(200, 0, up, 0);
-         topindications = new SignsPanel(200, 0, down, 1);
+        leftindications = new SignsPanel(0, 250, right, 0);
+        rightindications = new SignsPanel(0, 250, left, 2);
+        bottomindications = new SignsPanel(200, 0, up, 0);
+        topindications = new SignsPanel(200, 0, down, 1);
 
         leftindications.setLocation(50, 150);
         rightindications.setLocation(800, 150);
@@ -93,7 +95,7 @@ public class GameWindow {
     private void bindKeylisteners() {
         KeyListener keys;
 
-        GameWindow gameWindow=this;
+        GameWindow gameWindow = this;
         keys = new KeyListener() {
 
             public void keyPressed(KeyEvent evt) {
@@ -127,16 +129,18 @@ public class GameWindow {
                 Utilities.yolhesapla();
                 gameWindow.repaintWindow();
             }
+
             public void keyReleased(KeyEvent e) {
                 // TODO  for now it is not needed
             }
+
             public void keyTyped(KeyEvent e) {
                 // not needed
             }
         };
         gameWindow.mazeframe.addKeyListener(keys);
     }
-    public void repaintWindow(){
+    public void repaintWindow() {
 
         healthpane.repaint();
         pathpane.repaint();

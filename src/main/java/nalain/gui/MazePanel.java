@@ -1,10 +1,13 @@
 package nalain.gui;
 
-import nalain.karakterler.*;
+import nalain.karakterler.Karakter;
+import nalain.karakterler.LukeSkyWalker;
+import nalain.karakterler.MasterYoda;
 import nalain.maze.Location;
 import nalain.util.Utilities;
 
 import java.awt.*;
+
 public class MazePanel extends BasePanel {
     public void paintComponent(Graphics g) {
 

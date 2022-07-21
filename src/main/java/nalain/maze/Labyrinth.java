@@ -1,10 +1,18 @@
 package nalain.maze;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Labyrinth {
-    int sizeX=11;
-    int sizeY=14;
+    int sizeX;
+    int sizeY;
     public int[][] mazearray;
     public Labyrinth(){
-        this.mazearray= new int[11][14];
+        this.sizeX=11;
+        this.sizeY=14;
+        this.mazearray= new int[sizeX][sizeY];
     }
     public Labyrinth(int x, int y){
         this.sizeX=x;

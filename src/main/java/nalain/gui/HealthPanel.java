@@ -1,11 +1,7 @@
 package nalain.gui;
-
-import nalain.PortableGameSetup;
-
 import java.awt.*;
 
 public class HealthPanel extends BasePanel {
-
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setFont(new Font("TimesRoman", Font.BOLD, 30));

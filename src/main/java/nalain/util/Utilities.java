@@ -1,6 +1,7 @@
 package nalain.util;
 
 import nalain.PortableGameSetup;
+import nalain.gui.GameWindow;
 import nalain.karakterler.*;
 
 import java.io.BufferedReader;
@@ -10,18 +11,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Utilities {
+    public static PortableGameSetup portableGameSetup = PortableGameSetup.getInstance();
 
     static ArrayList<String> characters = new ArrayList<String>();
     static ArrayList<String> maze = new ArrayList<String>();
-    public static PortableGameSetup portableGameSetup = PortableGameSetup.getInstance();
 
     public static void isGameOVer() {
         if (portableGameSetup.getIyikarakter().getCurrentlocation().getX() == 13
                 && portableGameSetup.getIyikarakter().getCurrentlocation().getY() == 9) {
-            portableGameSetup.setGameOver(true);
+            portableGameSetup.setIsGameOver(true);
         }
     }
-
     public static void initializeFromFile() throws IOException {
         BufferedReader filein = null;
         try {
@@ -61,7 +61,8 @@ public class Utilities {
         Scanner scan = new Scanner(System.in);
         System.out.println("[skywalker:1] [Master yoda:2]:");
 
-      int choice = scan.nextInt();;
+        int choice = scan.nextInt();
+        ;
 
         if (choice == 1)
             portableGameSetup.setIyikarakter(new LukeSkyWalker());
@@ -69,6 +70,7 @@ public class Utilities {
             portableGameSetup.setIyikarakter(new MasterYoda());
 
     }
+
     public static void initializeBadCharacters() {
 
         for (int i = 0; i < characters.size(); i++) {
@@ -94,6 +96,7 @@ public class Utilities {
             }
         }
     }
+
     public static void resetTheGame() {
         for (Karakter karakter : portableGameSetup.getKotukarakter()) {
             karakter.reset();
@@ -118,6 +121,9 @@ public class Utilities {
         }
     }
 
+
+    //TODO
+    // these move methods shouldn't be here
 
     public static void moveUp() {
         int x = portableGameSetup.getIyikarakter().getCurrentlocation().getX();
@@ -147,11 +153,14 @@ public class Utilities {
         if (!portableGameSetup.getLabyrinth().isObstacle((x + 1), y))
             portableGameSetup.getIyikarakter().getCurrentlocation().setX(x + 1);
     }
+    public static void InitializeGameWindow() {
+        GameWindow gameWindow=new GameWindow();
+        portableGameSetup.setGameWindow(gameWindow);
+    }
 
     public static void Display() {
         for (Karakter karakter : portableGameSetup.getKotukarakter()) {
             System.out.println(karakter.toString());
         }
     }
-
 }

@@ -1,7 +1,6 @@
 package nalain.karakterler;
 
 import nalain.maze.Location;
-
 public class LukeSkyWalker extends Karakter{
 	public  LukeSkyWalker() {
 		this.can=3;

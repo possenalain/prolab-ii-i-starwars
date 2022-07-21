@@ -1,9 +1,13 @@
 package nalain.karakterler;
 
+import lombok.Getter;
+import lombok.Setter;
 import nalain.maze.Location;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+
+@Getter
+@Setter
 
 public class Karakter extends AllCharacters {
     String name;
@@ -36,7 +40,6 @@ public class Karakter extends AllCharacters {
         this.visitnext.add(this.currentlocation);
         ilocations();
     }
-
 
     void ilocations() {
         locationmatrices = new Location[11][14];
@@ -228,87 +231,10 @@ public class Karakter extends AllCharacters {
         }
     }
 
-
-    public Karakter() {
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public String getKapi() {
-        return kapi;
-    }
-
-    public void setKapi(String kapi) {
-        this.kapi = kapi;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Location getCurrentlocation() {
-        return currentlocation;
-    }
-
-    public void setCurrentlocation(Location currentlocation) {
-        this.currentlocation = currentlocation;
-    }
-
-    public int getSteps() {
-        return steps;
-    }
-
-    public void setSteps(int steps) {
-        this.steps = steps;
-    }
-
-    public int getCan() {
-        return can;
-    }
-
-    public void setCan(int can) {
-        this.can = can;
-    }
-
-    public ArrayList<Location> getEnkisayol() {
-        return enkisayol;
-    }
-
-    public void setEnkisayol(ArrayList<Location> enkisayol) {
-        this.enkisayol = enkisayol;
-    }
-
-    public Location getInitialLocation() {
-        return initialLocation;
-    }
-
-    public void setInitialLocation(Location initialLocation) {
-        this.initialLocation = initialLocation;
-    }
-
     public void reset() {
         this.setCurrentlocation(initialLocation);
         this.enkisayol.clear();
     }
-
 
     @Override
     public String toString() {
