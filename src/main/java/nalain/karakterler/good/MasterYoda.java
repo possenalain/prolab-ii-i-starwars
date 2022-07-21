@@ -1,5 +1,8 @@
 package nalain.karakterler.good;
 import nalain.maze.Location;
+
+import java.util.ArrayList;
+
 public class MasterYoda extends GoodCharacter {
 	public  MasterYoda() {
 
@@ -8,6 +11,7 @@ public class MasterYoda extends GoodCharacter {
 		this.setName("masteryoda");
 		this.setInitialLocation(new Location(4, 5));
 		this.setCurrentlocation(getInitialLocation());
+		this.enkisayol = new ArrayList<>();
 	}
 
 	public void reset() {

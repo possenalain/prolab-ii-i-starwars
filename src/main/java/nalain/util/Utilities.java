@@ -87,9 +87,11 @@ public class Utilities {
 
             else if (splittedrow[1].equalsIgnoreCase("Kyloren"))
                 karacter = new Kyloren();
+
             if (karacter != null) {
                 karacter.setKapi(splittedrow[3]);
-                karacter.setCurrentlocation(portableGameSetup.getLabyrinth().getDoor(splittedrow[3]));
+                karacter.setInitialLocation(portableGameSetup.getLabyrinth().getDoor(splittedrow[3]));
+                karacter.setCurrentlocation(karacter.getInitialLocation());
                 portableGameSetup.getKotukarakter().add(karacter);
             }
         }

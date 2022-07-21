@@ -16,8 +16,6 @@ public abstract class Karakter extends CharactersFeatures {
     protected Location initialLocation;
     public void reset() {
         this.setCurrentlocation(initialLocation);
-        this.enkisayol.clear();
-        this.aquireTarget();
     }
     @Override
     public String toString() {

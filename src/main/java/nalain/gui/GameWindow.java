@@ -20,7 +20,7 @@ public class GameWindow {
 
         mazeframe = new JFrame();
         mazeframe.setTitle("STARWARs");
-        mazeframe.setSize(900, 900);
+        mazeframe.setSize(800, 800);
         mazeframe.setLocation(250, 100);
         mazeframe.setLayout(null);
         mazeframe.setResizable(false);

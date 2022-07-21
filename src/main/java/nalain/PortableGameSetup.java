@@ -37,7 +37,6 @@ public class PortableGameSetup {
     public Boolean isGameOver() {
         return getIsGameOver();
     }
-
     public void moveHunters(){
         for(BadCharacter hunter: this.getKotukarakter())
             hunter.moveAutomatically();

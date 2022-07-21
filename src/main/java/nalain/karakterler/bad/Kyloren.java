@@ -1,6 +1,6 @@
 package nalain.karakterler.bad;
 
-import nalain.karakterler.Karakter;
+import nalain.maze.Location;
 
 public class Kyloren extends BadCharacter {
 	public Kyloren() {
@@ -8,5 +8,6 @@ public class Kyloren extends BadCharacter {
 		this.name="Kyloren";
 		this.type="kotu";
 		this.color="B";
+
 	}
 }

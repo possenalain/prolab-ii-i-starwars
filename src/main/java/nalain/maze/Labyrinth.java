@@ -17,7 +17,6 @@ public class Labyrinth implements Cloneable {
         this.mazearray = new int[sizeY][sizeX];
         mazeArrayWithLocations = new Location[sizeY][sizeX];
     }
-
     public Labyrinth(int x, int y) {
         this.sizeX = x;
         this.sizeY = y;
@@ -59,5 +58,14 @@ public class Labyrinth implements Cloneable {
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
+    }
+
+    public void resetLocationCosts() {
+
+        for(int y=0;y<mazeArrayWithLocations.length;y++) {
+            for(Location location : mazeArrayWithLocations[y]) {
+            location.reset();
+            }
+        }
     }
 }

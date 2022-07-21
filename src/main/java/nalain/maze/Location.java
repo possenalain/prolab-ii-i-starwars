@@ -27,4 +27,9 @@ public class Location implements Comparable<Location> {
 	public int compareTo(Location o) {
 		return this.getCost()-o.getCost();
 	}
+
+	public void  reset(){
+		cost=0;
+		this.shortpath=new ArrayList<Location>();
+	}
 }

@@ -8,11 +8,12 @@ public class BadCharacter extends Karakter {
     public void moveAutomatically() {
         //TODO move according to the step size
 
+        this.aquireTarget();
+        this.calculateShortestPath();
+
         if (!this.getEnkisayol().isEmpty())
             this.setCurrentlocation(this.getEnkisayol().remove(0));
 
-        this.aquireTarget();
-        this.calculateShortestPath();
         this.logShortestPath();
     }
 
