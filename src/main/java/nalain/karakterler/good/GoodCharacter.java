@@ -20,7 +20,7 @@ public class GoodCharacter extends Karakter {
         this.log();
     }
     @Override
-    protected void move() {
+    public void move() {
         this.moveAutomatically();
     }
 

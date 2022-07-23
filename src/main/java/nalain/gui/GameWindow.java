@@ -12,8 +12,8 @@ public class GameWindow extends JFrame {
     MazePanel mazepane;
     HealthPanel healthpane;
     LogsPanel logsPanel;
-    SignsPanel leftindications, rightindications, bottomindications, topindications;
-    Toolkit toolkit;
+    //SignsPanel leftindications, rightindications, bottomindications, topindications;
+
 
     public GameWindow() {
 
@@ -32,16 +32,14 @@ public class GameWindow extends JFrame {
         healthpane = new HealthPanel();
         logsPanel = new LogsPanel();
 
-        setupSignsPanel();
-
         cont.add(mazepane);
 
 
         cont.setBackground(Color.getHSBColor(74, (float) 0.10, (float) 0.12));
-        cont.add(leftindications);
-        cont.add(rightindications);
-        cont.add(topindications);
-        cont.add(bottomindications);
+//        cont.add(leftindications);
+//        cont.add(rightindications);
+//        cont.add(topindications);
+//        cont.add(bottomindications);
 
         cont.add(healthpane);
         cont.add(logsPanel);
@@ -49,33 +47,6 @@ public class GameWindow extends JFrame {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-    }
-    private void setupSignsPanel() {
-
-        toolkit = Toolkit.getDefaultToolkit();
-
-        Image left = toolkit.getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/left.png");
-        Image right = toolkit.getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/right.png");
-        Image up = toolkit.getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/up.png");
-        Image down = toolkit.getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/down.png");
-
-
-        leftindications = new SignsPanel(0, 250, right, 0);
-        rightindications = new SignsPanel(0, 250, left, 2);
-        bottomindications = new SignsPanel(200, 0, up, 0);
-        topindications = new SignsPanel(200, 0, down, 1);
-
-        leftindications.setLocation(50, 150);
-        rightindications.setLocation(800, 150);
-        topindications.setLocation(100, 100);
-        bottomindications.setLocation(100, 700);
-
-        leftindications.setSize(50, 550);
-        rightindications.setSize(50, 550);
-        topindications.setSize(700, 50);
-        bottomindications.setSize(700, 50);
-
-
     }
 
     public void repaintWindow() {

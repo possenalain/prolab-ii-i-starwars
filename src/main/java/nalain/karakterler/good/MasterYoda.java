@@ -13,6 +13,7 @@ public class MasterYoda extends GoodCharacter {
         this.setInitialLocation(new Location(4, 5));
         this.setCurrentlocation(getInitialLocation());
         this.enkisayol = new ArrayList<>();
+        
     }
 
     public void reset() {

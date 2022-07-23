@@ -1,192 +1,129 @@
 package nalain.gui;
 
 import nalain.karakterler.Karakter;
-import nalain.karakterler.good.LukeSkyWalker;
-import nalain.karakterler.good.MasterYoda;
+import nalain.maze.LabyrinthSign;
 import nalain.maze.Location;
-import nalain.util.Game;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class MazePanel extends BasePanel {
-
-    MazePanel(){
+    private final int FACTOR = 50;
+    private final int DIMX;
+    private final int DIMY;
+    MazePanel() {
+        DIMX = portableGameSetup.getLabyrinth().getSizeX();
+        DIMY = portableGameSetup.getLabyrinth().getSizeY();
         this.setLocation(0, 0);
-        this.setSize(700, 550);
+        this.setSize((DIMX * FACTOR), (DIMY * FACTOR));
         this.setBackground(Color.white);
     }
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
+
         g.setColor(Color.black);
         g.setFont(new Font("TimesRoman", Font.BOLD | Font.ITALIC, 20));
-        for (int y = 0; y < 550; y += 50) {
-            int j = y / 50;
-            for (int x = 0; x < 700; x += 50) {
-                int i = x / 50;
+
+        drawTheBoard(g);
+        drawSignsOnBoard(g);
+        drawCharacters(g);
+
+        if (portableGameSetup.isGameOver()) {
+            drawGameOver(g);
+        }
+    }
+    private void drawCharacters(Graphics g) {
+
+        ArrayList<Karakter> characters = new ArrayList<>();
+        characters.addAll(portableGameSetup.getKotukarakter());
+        characters.add(0, portableGameSetup.getIyikarakter());
+
+        for (Karakter karakter : characters) {
+
+            g.setColor(getColorByAbbr(karakter.getColor()));
+            int locx = karakter.getCurrentlocation().getX() * FACTOR;
+            int locy = karakter.getCurrentlocation().getY() * FACTOR;
+
+            g.fillRect(locx + 1, locy + 1, (FACTOR - 2), (FACTOR - 2));
+
+            String imageName = karakter.getName().toLowerCase();
+            Image karakterimage = this.getToolkit()
+                    .getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/" + imageName + ".jpg");
+
+            if (karakterimage != null) {
+                g.drawImage(karakterimage, (locx + 1), (locy + 1), (FACTOR - 2), (FACTOR - 2), this);
+            }
+            drawShortestPath(karakter, g);
+        }
+
+    }
+    private void drawShortestPath(Karakter karakter, Graphics g) {
+
+        String colorAbbr = (String) karakter.getColor();
+        g.setColor(getColorByAbbr(colorAbbr));
+        for (int j = 0; j < karakter.getEnkisayol().size() - 1; j++) {
+            Location loc = karakter.getEnkisayol().get(j);
+            int pathx = loc.getX() * FACTOR;
+            int pathy = loc.getY() * FACTOR;
+            g.fillRect(pathx + 1, pathy + 1, (FACTOR - 2), (FACTOR - 2));
+        }
+    }
+    void drawSignsOnBoard(Graphics g) {
+        //signs on boards
+        for (LabyrinthSign sign : portableGameSetup.getLabyrinth().getLabyrinthSigns()) {
+            int x = (int) (sign.getCoordinates().getX() * FACTOR);
+            int y = (int) (sign.getCoordinates().getY() * FACTOR);
+
+            g.setColor(Color.blue);
+            g.fillRect(x + 1, y + 1, (FACTOR - 2), (FACTOR - 2));
+            g.setColor(Color.white);
+            g.drawString(sign.getName(), x + (FACTOR / 2), (int) y + (FACTOR / 2));
+        }
+
+    }
+    void drawTheBoard(Graphics g) {
+
+        for (int y = 0; y < DIMY * FACTOR; y += FACTOR) {
+            int j = y / FACTOR;
+            for (int x = 0; x < DIMX * FACTOR; x += FACTOR) {
+                int i = x / FACTOR;
                 int wallpath = portableGameSetup.getLabyrinth().mazearray[j][i];
 
                 if (wallpath == 1) {//path
                     g.setColor(Color.black);
-                    g.drawRect(x + 1, y + 1, 48, 48);
-                    g.drawString("" + wallpath, x + 25, y + 25);
+                    g.drawRect(x + 1, y + 1, (FACTOR - 2), (FACTOR - 2));
+                    g.drawString("" + wallpath, x + (FACTOR / 2), (int) y + (FACTOR / 2));
                 } else {//wall
                     g.setColor(Color.lightGray);
-                    g.fillRect(x + 1, y + 1, 48, 48);
+                    g.drawRect(x + 1, y + 1, (FACTOR - 2), (FACTOR - 2));
                     g.setColor(Color.black);
-                    g.drawString("" + wallpath, x + 25, y + 25);
-
-                }
-            }
-        }
-        //kapilar
-
-        g.setColor(Color.blue);
-        g.fillRect(1, 251, 48, 48);
-        g.fillRect(201, 1, 48, 48);
-        g.fillRect(601, 1, 48, 48);
-        g.fillRect(651, 251, 48, 48);
-        g.fillRect(201, 501, 48, 48);
-        g.setColor(Color.white);
-        g.drawString("A", 1 + 25, 251 + 25);
-        g.drawString("B", 201 + 25, 1 + 25);
-        g.drawString("C", 601 + 25, 1 + 25);
-        g.drawString("D", 651 + 25, 251 + 25);
-        g.drawString("E", 201 + 25, 501 + 25);
-
-
-        //oyuncu
-        g.setColor(Color.orange);
-        int iyix = portableGameSetup.getIyikarakter().getCurrentlocation().getX() * 50;
-        int iyiy = portableGameSetup.getIyikarakter().getCurrentlocation().getY() * 50;
-
-        g.fillRect(iyix + 1, iyiy + 1, 48, 48);
-        Image karakterimage;
-        if (portableGameSetup.getIyikarakter().getName().equalsIgnoreCase("sky")) {
-            karakterimage = this.getToolkit().getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/sky.jpg");
-        } else {
-            karakterimage = this.getToolkit().getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/masteryoda.jpg");
-        }
-        if (karakterimage != null) {
-            g.drawImage(karakterimage, (iyix + 1), (iyiy + 1), 48, 48, this);
-        }
-
-        for (int i = 0; i < portableGameSetup.getKotukarakter().size(); i++) {
-
-            Karakter tempo = portableGameSetup.getKotukarakter().get(i);
-            String kkcolor = (String) tempo.getColor();
-
-            if (kkcolor.equalsIgnoreCase("R")) {
-                g.setColor(Color.RED);
-            } else if (kkcolor.equalsIgnoreCase("B")) {
-                g.setColor(Color.getHSBColor(240, (float) 0.08, (float) 0.01));
-            }
-            if (kkcolor.equalsIgnoreCase("M")) {
-                g.setColor(Color.MAGENTA);
-            }
-
-            for (int j = 0; j < tempo.getEnkisayol().size() - 1; j++) {
-                Location loc = tempo.getEnkisayol().get(j);
-                int pathx, pathy;
-                pathx = loc.getX() * 50;
-                pathy = loc.getY() * 50;
-
-                g.fillRect(pathx + 1, pathy + 1, 48, 48);
-            }
-
-        }
-
-        //kotu karakter
-
-        for (int ki = 0; ki < portableGameSetup.getKotukarakter().size(); ki++) {
-
-            Karakter gecicikotukarakter = portableGameSetup.getKotukarakter().get(ki);
-            int kotux = gecicikotukarakter.getCurrentlocation().getX() * 50;
-            int kotuy = gecicikotukarakter.getCurrentlocation().getY() * 50;
-
-            Image gecicikotukarakterIcon;
-            String iconname = gecicikotukarakter.getName();
-
-            gecicikotukarakterIcon = this.getToolkit().getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/" + iconname + ".jpg".toString());
-
-            if (gecicikotukarakterIcon != null) {
-                g.drawImage(gecicikotukarakterIcon, kotux + 1, kotuy + 1, 48, 48, this);
-            } else {
-                System.out.println("empty");
-            }
-
-            if (portableGameSetup.isGameOver()) {
-
-                g.setColor(Color.getHSBColor(0, 0, 0));
-                g.fillRect(150, 100, 400, 300);
-                g.setColor(Color.WHITE);
-                g.setFont(new Font("TimesRoman", Font.BOLD, 50));
-                g.drawString("YOU WON", 200, 250);
-
-                //TODO
-                //
-                //Utilities.removeKeyListener(keys);
-            }
-
-            if (iyix == kotux && iyiy == kotuy) {
-                System.out.println("_>yakaladim seni<_");
-
-                if (portableGameSetup.getIyikarakter().getName().equalsIgnoreCase("sky")) {
-
-                    LukeSkyWalker nextlife = (LukeSkyWalker) portableGameSetup.getIyikarakter();
-                    nextlife.setCan(nextlife.getCan() - 1);
-
-                    //TODO
-                    //healthpane.repaint();
-
-                    if (nextlife.getCan() >= 1) {
-
-                        System.out.println("remaining life cycles " + nextlife.getCan());
-                        portableGameSetup.setIyikarakter(nextlife);
-
-                        Game.resetTheGame();
-
-                    } else {
-                        //GAME OVER
-                        g.setColor(Color.getHSBColor(0, 0, 0));
-                        g.fillRect(150, 100, 400, 300);
-                        g.setColor(Color.WHITE);
-                        g.setFont(new Font("TimesRoman", Font.BOLD, 50));
-                        g.drawString("GAME OVER", 200, 250);
-
-
-                        portableGameSetup.repaintGameWindow();
-                        //portableGameSetup.getGameWindow().mazeframe.removeKeyListener(keys);
-                    }
-                } else if (portableGameSetup.getIyikarakter().getName().equalsIgnoreCase("masteryoda")) {
-
-                    MasterYoda nextlife = (MasterYoda) portableGameSetup.getIyikarakter();
-                    nextlife.setCan(nextlife.getCan() - 1);
-
-                    portableGameSetup.repaintGameWindow();
-
-                    if (nextlife.getCan() >= 1) {
-                        System.out.println("remaining life cycles " + nextlife.getCan());
-                        portableGameSetup.setIyikarakter(nextlife);
-                        Game.resetTheGame();
-                    } else {
-                        //GAME OVER
-                        g.setColor(Color.getHSBColor(0, 0, 0));
-                        g.fillRect(150, 100, 400, 300);
-                        g.setColor(Color.WHITE);
-                        g.setFont(new Font("TimesRoman", Font.BOLD, 50));
-                        g.drawString("GAME OVER", 200, 250);
-
-                        portableGameSetup.repaintGameWindow();
-                        //portableGameSetup.getGameWindow().mazeframe.removeKeyListener(keys);
-                    }
+                    g.drawString("" + wallpath, x + (FACTOR / 2), (int) y + (FACTOR / 2));
 
                 }
 
-                break;
             }
-
         }
+    }
+    private void drawGameOver(Graphics g) {
 
+        g.setColor(Color.getHSBColor(0, 0, 0));
+        g.fillRect(150, 100, 400, 300);
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("TimesRoman", Font.BOLD, 50));
+        g.drawString("YOU WON", 200, 250);
+
+
+    }
+    private Color getColorByAbbr(String colorAbbr) {
+        if (colorAbbr.equalsIgnoreCase("R")) {
+            return Color.RED;
+        } else if (colorAbbr.equalsIgnoreCase("B")) {
+            return Color.getHSBColor(240, (float) 0.08, (float) 0.01);
+        }
+        if (colorAbbr.equalsIgnoreCase("M")) {
+            return Color.MAGENTA;
+        }
+        return Color.ORANGE;
     }
 }

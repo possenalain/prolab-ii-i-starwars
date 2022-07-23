@@ -14,7 +14,7 @@ public abstract class CharacterWithFeatures {
     protected String name;
     protected String type;
     String entrance;
-    protected String color;
+    protected String color="";
     protected int can;
     protected int stepSize;
     protected int steps;
@@ -34,7 +34,7 @@ public abstract class CharacterWithFeatures {
 
     protected abstract void moveAutomatically();
 
-    protected abstract void move();
+    public abstract void move();
 
     protected abstract void moveTo(Location location);
 

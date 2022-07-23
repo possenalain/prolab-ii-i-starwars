@@ -10,6 +10,7 @@ import nalain.maze.Labyrinth;
 import nalain.util.Logger;
 
 import java.util.ArrayList;
+
 @Getter
 @Setter
 public class PortableGameSetup {
@@ -17,32 +18,37 @@ public class PortableGameSetup {
     String BASE_PATH_RESOURCES = "./resources/";
 
     GoodCharacter iyikarakter;
-    ArrayList<BadCharacter> kotukarakter;
+    ArrayList<Karakter> kotukarakter;
     Labyrinth labyrinth;
     Boolean isGameOver;
-    Logger logger=null;
+    Logger logger = null;
     GameWindow gameWindow;
     private static PortableGameSetup portableGameSetup = null;
+
     private PortableGameSetup() {
-        kotukarakter = new ArrayList<BadCharacter>();
-        labyrinth = new Labyrinth();
-        logger=Logger.getInstance();
+        kotukarakter = new ArrayList<Karakter>();
+        logger = Logger.getInstance();
         isGameOver = false;
+
     }
+
     public static PortableGameSetup getInstance() {
         if (portableGameSetup == null) {
             portableGameSetup = new PortableGameSetup();
         }
         return portableGameSetup;
     }
+
     public void repaintGameWindow() {
         gameWindow.repaintWindow();
     }
+
     public Boolean isGameOver() {
         return getIsGameOver();
     }
-    public void moveHunters(){
-        for(BadCharacter hunter: this.getKotukarakter())
+
+    public void moveHunters() {
+        for (Karakter hunter : this.getKotukarakter())
             hunter.move();
     }
 }
