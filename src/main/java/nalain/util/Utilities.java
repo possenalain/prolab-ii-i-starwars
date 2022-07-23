@@ -8,6 +8,7 @@ import nalain.karakterler.bad.Kyloren;
 import nalain.karakterler.bad.Stormtrooper;
 import nalain.karakterler.good.LukeSkyWalker;
 import nalain.karakterler.good.MasterYoda;
+import nalain.maze.Labyrinth;
 import nalain.maze.LabyrinthSign;
 import nalain.maze.Location;
 
@@ -48,6 +49,13 @@ public class Utilities {
         filein.close();
     }
     public static void initializeMazeArray() {
+
+        int rows=maze.size();
+
+        String columns[] = maze.get(0).split("\\s+");
+
+        portableGameSetup.setLabyrinth(new Labyrinth(columns.length,rows) );
+
         for (int i = 0; i < maze.size(); i++) {
             String row[] = maze.get(i).split("\\s+");
             for (int j = 0; j < row.length; j++) {
@@ -99,7 +107,6 @@ public class Utilities {
             }
         }
     }
-
     public static void initializeLabyrinthDoorsAsSigns() {
 
         for (String row : indications) {

@@ -13,28 +13,30 @@ public class Labyrinth implements Cloneable {
     public int[][] mazearray;
     public Location[][] mazeArrayWithLocations;
     ArrayList<LabyrinthSign> labyrinthSigns;
-    public Labyrinth() {
-        this.sizeY = 11;
-        this.sizeX = 14;
-        this.mazearray = new int[sizeY][sizeX];
-        mazeArrayWithLocations = new Location[sizeY][sizeX];
-        labyrinthSigns = new ArrayList<>();
-    }
+
+
     public Labyrinth(int x, int y) {
         this.sizeX = x;
         this.sizeY = y;
         this.mazearray = new int[sizeY][sizeX];
         mazeArrayWithLocations = new Location[sizeY][sizeX];
+        labyrinthSigns = new ArrayList<>();
     }
+
+    public Labyrinth() {
+        this(14, 11);
+    }
+
     public Location findSignByName(String name) {
 
-        for(LabyrinthSign sign:labyrinthSigns){
-           if( sign.getName().equalsIgnoreCase(name)){
+        for (LabyrinthSign sign : labyrinthSigns) {
+            if (sign.getName().equalsIgnoreCase(name)) {
                 return sign.getCoordinates();
             }
         }
-        return new Location(0,0);
+        return new Location(0, 0);
     }
+
     public Boolean isObstacle(int x, int y) {
         if (mazearray[y][x] == 1) {
             return false;
@@ -42,10 +44,12 @@ public class Labyrinth implements Cloneable {
 
         return true;
     }
+
     @Override
     public Object clone() throws CloneNotSupportedException {
         return super.clone();
     }
+
     public void resetLocationCosts() {
 
         for (int y = 0; y < mazeArrayWithLocations.length; y++) {
