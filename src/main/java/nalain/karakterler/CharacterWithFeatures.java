@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public abstract class CharacterWithFeatures {
     protected String name;
     protected String type;
-    String kapi;
+    String entrance;
     protected String color;
     protected int can;
     protected int stepSize;

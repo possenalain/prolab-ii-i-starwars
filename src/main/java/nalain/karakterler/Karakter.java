@@ -38,7 +38,7 @@ public abstract class Karakter extends CharacterWithFeatures {
         return "Karakter{" +
                 "name='" + name + '\'' +
                 ", type='" + type + '\'' +
-                ", kapi='" + kapi + '\'' +
+                ", kapi='" + entrance + '\'' +
                 ", currentlocation=" + currentlocation +
                 ", color='" + color + '\'' +
                 ", can=" + can +
