@@ -9,6 +9,12 @@ import nalain.util.Game;
 import java.awt.*;
 
 public class MazePanel extends BasePanel {
+
+    MazePanel(){
+        this.setLocation(0, 0);
+        this.setSize(700, 550);
+        this.setBackground(Color.white);
+    }
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);

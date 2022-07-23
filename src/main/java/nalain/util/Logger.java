@@ -6,13 +6,13 @@ public class Logger {
     private Logger() {
     }
 
-    public Logger getInstance() {
+    public static Logger getInstance() {
         if (logger == null)
             logger = new Logger();
         return logger;
     }
 
-    public void log(String log) {
+    public void addLog(String log) {
         this.message += log + "\n";
     }
 
@@ -21,6 +21,6 @@ public class Logger {
     }
 
     public void clearLogs() {
-        this.message = " ";
+        this.message = "";
     }
 }

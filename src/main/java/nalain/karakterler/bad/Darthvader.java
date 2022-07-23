@@ -1,7 +1,5 @@
 package nalain.karakterler.bad;
 
-import nalain.maze.Location;
-
 public class Darthvader extends BadCharacter {
     public Darthvader() {
         this.setStepSize(1);

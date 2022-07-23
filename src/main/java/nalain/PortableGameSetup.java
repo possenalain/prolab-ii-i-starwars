@@ -26,7 +26,7 @@ public class PortableGameSetup {
     private PortableGameSetup() {
         kotukarakter = new ArrayList<BadCharacter>();
         labyrinth = new Labyrinth();
-        logger.getInstance();
+        logger=Logger.getInstance();
         isGameOver = false;
     }
     public static PortableGameSetup getInstance() {
@@ -43,6 +43,6 @@ public class PortableGameSetup {
     }
     public void moveHunters(){
         for(BadCharacter hunter: this.getKotukarakter())
-            hunter.moveAutomatically();
+            hunter.move();
     }
 }

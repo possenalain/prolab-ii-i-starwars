@@ -4,19 +4,26 @@ import nalain.karakterler.Karakter;
 import nalain.maze.Location;
 
 public class GoodCharacter extends Karakter {
+
+    @Override
+    public void aquireTarget() {
+    }
+
     @Override
     protected void moveAutomatically() {
-
+        //TODO move according to the step size
+        this.aquireTarget();
         this.calculateShortestPath();
+
+        if (!this.getEnkisayol().isEmpty())
+            this.setCurrentlocation(this.getEnkisayol().remove(0));
+        this.log();
     }
     @Override
     protected void move() {
-        this.calculateShortestPath();
+        this.moveAutomatically();
     }
-    @Override
-    protected void moveTo(Location location) {
-        this.calculateShortestPath();
-    }
+
     protected void moveInDirection(int direction) {
 
 
@@ -40,12 +47,15 @@ public class GoodCharacter extends Karakter {
     public void moveUp() {
         moveInDirection(0);
     }
+
     public void moveRight() {
         moveInDirection(1);
     }
+
     public void moveDown() {
         moveInDirection(2);
     }
+
     public void moveLeft() {
         moveInDirection(3);
     }

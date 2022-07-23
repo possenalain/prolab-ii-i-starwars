@@ -2,6 +2,13 @@ package nalain.gui;
 import java.awt.*;
 
 public class HealthPanel extends BasePanel {
+    HealthPanel(){
+        this.setLocation(550, 25);
+        this.setSize(300, 50);
+        this.setBackground(Color.black);
+
+    }
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.setFont(new Font("TimesRoman", Font.BOLD, 30));

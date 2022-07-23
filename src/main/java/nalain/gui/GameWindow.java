@@ -7,46 +7,30 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class GameWindow {
+public class GameWindow extends JFrame {
     PortableGameSetup portableGameSetup = PortableGameSetup.getInstance();
-    JPanel mazepane;
-    JFrame mazeframe;
+    MazePanel mazepane;
     HealthPanel healthpane;
-    ConsolePanel logsPanel;
+    LogsPanel logsPanel;
     SignsPanel leftindications, rightindications, bottomindications, topindications;
     Toolkit toolkit;
 
     public GameWindow() {
 
-        mazeframe = new JFrame();
-        mazeframe.setTitle("STARWARs");
-        mazeframe.setSize(800, 800);
-        mazeframe.setLocation(250, 100);
-        mazeframe.setLayout(null);
-        mazeframe.setResizable(false);
-        mazeframe.toFront();
-        mazeframe.requestFocus();
+        this.setTitle("STARWARs");
+        this.setSize(800, 800);
+        this.setLocation(250, 100);
+        this.setLayout(null);
+        this.setResizable(false);
+        this.toFront();
+        this.requestFocus();
+        this.addKeyListener(new Keys());
 
-        Container cont = mazeframe.getContentPane();
+        Container cont = this.getContentPane();
 
         mazepane = new MazePanel();
-
         healthpane = new HealthPanel();
-
-        healthpane.setBackground(Color.black);
-
-        logsPanel = new ConsolePanel();
-        logsPanel.setBackground(Color.getHSBColor(112, (float) 0.38, (float) 0.12));
-
-        mazepane.setLocation(100, 150);
-        mazepane.setSize(700, 550);
-        mazepane.setBackground(Color.white);
-
-        healthpane.setSize(300, 50);
-        logsPanel.setSize(500, 100);
-
-        healthpane.setLocation(550, 25);
-        logsPanel.setLocation(100, 750);
+        logsPanel = new LogsPanel();
 
         setupSignsPanel();
 
@@ -59,16 +43,13 @@ public class GameWindow {
         cont.add(topindications);
         cont.add(bottomindications);
 
-
         cont.add(healthpane);
         cont.add(logsPanel);
 
-        mazeframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        mazeframe.setVisible(true);
 
-        bindKeylisteners();
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setVisible(true);
     }
-
     private void setupSignsPanel() {
 
         toolkit = Toolkit.getDefaultToolkit();
@@ -97,52 +78,43 @@ public class GameWindow {
 
     }
 
-    private void bindKeylisteners() {
-        KeyListener keys;
-        GameWindow gameWindow = this;
-        keys = new KeyListener() {
-
-            public void keyPressed(KeyEvent evt) {
-
-                switch (evt.getKeyCode()) {
-
-                    case KeyEvent.VK_DOWN:
-                        portableGameSetup.getIyikarakter().moveDown();
-                        break;
-                    case KeyEvent.VK_UP:
-                        portableGameSetup.getIyikarakter().moveUp();
-                        break;
-
-                    case KeyEvent.VK_LEFT:
-                        portableGameSetup.getIyikarakter().moveLeft();
-                        break;
-
-                    case KeyEvent.VK_RIGHT:
-                        portableGameSetup.getIyikarakter().moveRight();
-                        break;
-                }
-
-                portableGameSetup.moveHunters();
-                gameWindow.repaintWindow();
-            }
-
-            public void keyReleased(KeyEvent e) {
-                // TODO  for now it is not needed
-            }
-
-            public void keyTyped(KeyEvent e) {
-                // not needed
-            }
-        };
-        gameWindow.mazeframe.addKeyListener(keys);
-    }
-
     public void repaintWindow() {
 
         healthpane.repaint();
-        logsPanel.repaint();
+        logsPanel.refleshLogs();
         mazepane.repaint();
-        mazeframe.repaint();
+        this.repaint();
     }
 
+    private class Keys implements KeyListener {
+        @Override
+        public void keyPressed(KeyEvent evt) {
+            switch (evt.getKeyCode()) {
+                case KeyEvent.VK_DOWN:
+                    portableGameSetup.getIyikarakter().moveDown();
+                    break;
+                case KeyEvent.VK_UP:
+                    portableGameSetup.getIyikarakter().moveUp();
+                    break;
+
+                case KeyEvent.VK_LEFT:
+                    portableGameSetup.getIyikarakter().moveLeft();
+                    break;
+
+                case KeyEvent.VK_RIGHT:
+                    portableGameSetup.getIyikarakter().moveRight();
+                    break;
+            }
+            portableGameSetup.moveHunters();
+            repaintWindow();
+        }
+
+        @Override
+        public void keyTyped(KeyEvent e) {
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+        }
+    }
 }
