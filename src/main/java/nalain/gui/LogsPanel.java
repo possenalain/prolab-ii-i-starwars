@@ -15,8 +15,8 @@ public class LogsPanel extends ScrollableBasePanel {
 
         //TODO sizes
 
-        this.setSize(900, 300);
-        this.setLocation(0, 300);
+        this.setSize(900, 150);
+        this.setLocation(0, 550);
 
         logsTextArea.setBackground(new Color(0, 0, 0));
         logsTextArea.setForeground(new Color(222, 222, 222));

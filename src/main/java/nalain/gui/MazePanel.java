@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class MazePanel extends BasePanel {
-    private final int FACTOR = 50;
+    private final int FACTOR = 45;
     private final int DIMX;
     private final int DIMY;
     MazePanel() {

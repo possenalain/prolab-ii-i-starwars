@@ -12,7 +12,6 @@ public class GameWindow extends JFrame {
     MazePanel mazepane;
     HealthPanel healthpane;
     LogsPanel logsPanel;
-    //SignsPanel leftindications, rightindications, bottomindications, topindications;
 
 
     public GameWindow() {
@@ -36,11 +35,6 @@ public class GameWindow extends JFrame {
 
 
         cont.setBackground(Color.getHSBColor(74, (float) 0.10, (float) 0.12));
-//        cont.add(leftindications);
-//        cont.add(rightindications);
-//        cont.add(topindications);
-//        cont.add(bottomindications);
-
         cont.add(healthpane);
         cont.add(logsPanel);
 
