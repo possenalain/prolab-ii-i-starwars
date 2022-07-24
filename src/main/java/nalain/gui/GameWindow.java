@@ -13,6 +13,7 @@ public class GameWindow extends JFrame {
     HealthPanel healthpane;
     LogsPanel logsPanel;
 
+    Keys keysIamListeningTo;
 
     public GameWindow() {
 
@@ -23,8 +24,8 @@ public class GameWindow extends JFrame {
         this.setResizable(false);
         this.toFront();
         this.requestFocus();
-        this.addKeyListener(new Keys());
-
+        keysIamListeningTo=new Keys();
+        this.addKeyListener(keysIamListeningTo);
         Container cont = this.getContentPane();
 
         mazepane = new MazePanel();
@@ -51,6 +52,9 @@ public class GameWindow extends JFrame {
         this.repaint();
     }
 
+    public void removeKeyListeners() {;
+        this.removeKeyListener(keysIamListeningTo);
+    }
     private class Keys implements KeyListener {
         @Override
         public void keyPressed(KeyEvent evt) {
