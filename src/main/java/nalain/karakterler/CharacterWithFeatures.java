@@ -35,6 +35,7 @@ public abstract class CharacterWithFeatures {
 
     public abstract void move();
 
+    protected abstract boolean destinationReached();
     protected abstract void moveTo(Location location);
 
     protected abstract void reset();
