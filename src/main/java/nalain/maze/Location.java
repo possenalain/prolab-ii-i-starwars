@@ -33,6 +33,10 @@ public class Location implements Comparable<Location> {
         cost = 0;
         this.shortpath = new ArrayList<Location>();
     }
+
+    public boolean isSameAs(Location location){
+        return (this.getX()==location.getX() && this.getY()==location.getY());
+    }
     @Override
     public String toString() {
         return "{" +
