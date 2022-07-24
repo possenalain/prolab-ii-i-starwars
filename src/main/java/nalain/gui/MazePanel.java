@@ -83,8 +83,14 @@ public class MazePanel extends BasePanel {
 
             g.setColor(Color.blue);
             g.fillRect(x + 1, y + 1, (FACTOR - 2), (FACTOR - 2));
-            g.setColor(Color.white);
-            g.drawString(sign.getName(), x + (FACTOR / 2), (int) y + (FACTOR / 2));
+
+            String iconName = sign.getIconName();
+            Image iconImage = this.getToolkit()
+                    .getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/" + iconName + ".png");
+
+            if (iconImage != null) {
+                g.drawImage(iconImage, (x + 1), (y + 1), (FACTOR - 2), (FACTOR - 2), this);
+            }
         }
 
     }
@@ -108,14 +114,15 @@ public class MazePanel extends BasePanel {
             }
         }
     }
+
     private void drawGameOver(Graphics g) {
 
         g.setColor(Color.getHSBColor(0, 0, 0));
-        g.fillRect( (int) (this.getWidth()*0.1), (int) (this.getHeight()*0.1) , (int) (this.getWidth()*0.8), (int) (this.getHeight()*0.8));
+        g.fillRect((int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.1), (int) (this.getWidth() * 0.8), (int) (this.getHeight() * 0.8));
         g.setColor(Color.WHITE);
         g.setFont(new Font("TimesRoman", Font.BOLD, FACTOR));
         g.drawString((portableGameSetup.getRound() <= portableGameSetup.getIyikarakter().getCan()) ?
-                "YOU WON" : "Game Over", (int) ((this.getWidth()*0.32)), (int) ((this.getHeight()*0.48)));
+                "YOU WON" : "Game Over", (int) ((this.getWidth() * 0.32)), (int) ((this.getHeight() * 0.48)));
 
     }
 
@@ -130,9 +137,15 @@ public class MazePanel extends BasePanel {
         }
         return Color.ORANGE;
     }
-
     private int calculateFactor(int DIMX, int DIMY) {
-        //TODO dynamically
-        return 40;
+        int factor = (int) Math.sqrt(DIMX * DIMY);
+        if (factor < 10)
+            return 50;
+        else if (factor < 20)
+            return 30;
+        else if (factor < 60)
+            return 20;
+        else
+            return 10;
     }
 }

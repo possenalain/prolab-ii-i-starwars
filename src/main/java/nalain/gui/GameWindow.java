@@ -12,9 +12,7 @@ public class GameWindow extends JFrame {
     MazePanel mazepane;
     HealthPanel healthpane;
     LogsPanel logsPanel;
-
     Keys keysIamListeningTo;
-
     public GameWindow() {
 
         this.setTitle("STARWARs");
@@ -24,7 +22,7 @@ public class GameWindow extends JFrame {
         this.setResizable(false);
         this.toFront();
         this.requestFocus();
-        keysIamListeningTo=new Keys();
+        keysIamListeningTo = new Keys();
         this.addKeyListener(keysIamListeningTo);
         Container cont = this.getContentPane();
 
@@ -43,7 +41,6 @@ public class GameWindow extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
-
     public void repaintWindow() {
 
         healthpane.repaint();
@@ -51,13 +48,17 @@ public class GameWindow extends JFrame {
         mazepane.repaint();
         this.repaint();
     }
-
-    public void removeKeyListeners() {;
+    public void removeKeyListeners() {
+        ;
         this.removeKeyListener(keysIamListeningTo);
     }
     private class Keys implements KeyListener {
         @Override
         public void keyPressed(KeyEvent evt) {
+
+            if (portableGameSetup.isGameOver())
+                return;
+
             switch (evt.getKeyCode()) {
                 case KeyEvent.VK_DOWN:
                     portableGameSetup.getIyikarakter().moveDown();

@@ -30,9 +30,10 @@ public class LogsPanel extends ScrollableBasePanel {
         refleshLogs();
         this.setViewportView(logsTextArea);
     }
+
     void refleshLogs() {
-        logsTextArea.append("--------------------------" +
-                "\n"+portableGameSetup.getLogger().getLogs());
+        logsTextArea.append("--" +
+                "\n" + portableGameSetup.getLogger().getLogs());
         portableGameSetup.getLogger().clearLogs();
     }
 }
