@@ -6,11 +6,11 @@ public class HealthPanel extends BasePanel {
         this.setLocation(550, 25);
         this.setSize(300, 50);
         this.setBackground(Color.black);
-
     }
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
         g.setFont(new Font("TimesRoman", Font.BOLD, 30));
         g.setColor(Color.WHITE);
         g.drawString("CANLAR", 10, 30);

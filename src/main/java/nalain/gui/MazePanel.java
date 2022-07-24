@@ -8,12 +8,13 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class MazePanel extends BasePanel {
-    private final int FACTOR = 45;
+    private final int FACTOR;
     private final int DIMX;
     private final int DIMY;
     MazePanel() {
         DIMX = portableGameSetup.getLabyrinth().getSizeX();
         DIMY = portableGameSetup.getLabyrinth().getSizeY();
+        FACTOR = calculateFactor(DIMX, DIMY);
         this.setLocation(0, 0);
         this.setSize((DIMX * FACTOR), (DIMY * FACTOR));
         this.setBackground(Color.white);
@@ -33,6 +34,7 @@ public class MazePanel extends BasePanel {
             drawGameOver(g);
         }
     }
+
     private void drawCharacters(Graphics g) {
 
         ArrayList<Karakter> characters = new ArrayList<>();
@@ -58,6 +60,7 @@ public class MazePanel extends BasePanel {
         }
 
     }
+
     private void drawShortestPath(Karakter karakter, Graphics g) {
 
         String colorAbbr = (String) karakter.getColor();
@@ -91,15 +94,11 @@ public class MazePanel extends BasePanel {
                 int wallpath = portableGameSetup.getLabyrinth().mazearray[j][i];
 
                 if (wallpath == 1) {//path
-                    g.setColor(Color.black);
-                    g.drawRect(x + 1, y + 1, (FACTOR - 2), (FACTOR - 2));
-                    g.drawString("" + wallpath, x + (FACTOR / 2), (int) y + (FACTOR / 2));
-                } else {//wall
                     g.setColor(Color.lightGray);
-                    g.drawRect(x + 1, y + 1, (FACTOR - 2), (FACTOR - 2));
+                    g.fillRect(x + 1, y + 1, (FACTOR - 2), (FACTOR - 2));
+                } else {//wall
                     g.setColor(Color.black);
-                    g.drawString("" + wallpath, x + (FACTOR / 2), (int) y + (FACTOR / 2));
-
+                    g.fillRect(x + 1, y + 1, (FACTOR - 2), (FACTOR - 2));
                 }
 
             }
@@ -119,11 +118,15 @@ public class MazePanel extends BasePanel {
         if (colorAbbr.equalsIgnoreCase("R")) {
             return Color.RED;
         } else if (colorAbbr.equalsIgnoreCase("B")) {
-            return Color.getHSBColor(240, (float) 0.08, (float) 0.01);
+            return Color.getHSBColor(150, (float) 0.8, (float) 0.61);
         }
         if (colorAbbr.equalsIgnoreCase("M")) {
             return Color.MAGENTA;
         }
         return Color.ORANGE;
+    }
+    private int calculateFactor(int DIMX, int DIMY) {
+        //TODO dynamically
+        return 30;
     }
 }

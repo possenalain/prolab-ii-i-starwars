@@ -31,8 +31,6 @@ public class Algorithms {
 
         Location visiting;
 
-        //TODO use priority QUEUE
-
         PriorityQueue<Location> visitNext = new PriorityQueue<Location>();
 
 
