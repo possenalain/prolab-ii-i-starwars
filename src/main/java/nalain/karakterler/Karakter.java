@@ -12,8 +12,9 @@ public abstract class Karakter extends CharacterWithFeatures {
         if (portableGameSetup.getIyikarakter() != null)
             this.setHedef(portableGameSetup.getIyikarakter().getCurrentlocation());
     }
+
     protected int calculateSteps() {
-        if(this.stepSize>0)
+        if (this.stepSize > 0)
             return (int) Math.ceil(this.getEnkisayol().size() / this.stepSize);
         return 0;
     }
@@ -32,6 +33,12 @@ public abstract class Karakter extends CharacterWithFeatures {
 
     public void reset() {
         this.setCurrentlocation(initialLocation);
+        this.getEnkisayol().removeAll(this.getEnkisayol());
+    }
+
+    public boolean destinationReached() {
+        return this.getCurrentlocation()
+                .isSameAs(this.getHedef());
     }
     public String toString() {
 
@@ -46,6 +53,7 @@ public abstract class Karakter extends CharacterWithFeatures {
                 ", hedef=" + hedef +
                 '}';
     }
+
     protected void log() {
         String message = "";
         message += "name=" + name +

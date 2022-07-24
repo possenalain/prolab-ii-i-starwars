@@ -22,6 +22,11 @@ public class GoodCharacter extends Karakter {
     @Override
     public void move() {
         this.moveAutomatically();
+        if(destinationReached()){
+            //TODO game is over initilize a new game
+            // new game not round
+            portableGameSetup.setIsGameOver(true);
+        }
     }
 
     protected void moveInDirection(int direction) {
@@ -42,6 +47,12 @@ public class GoodCharacter extends Karakter {
             if (!portableGameSetup.getLabyrinth().isObstacle(newX, newY)) {
                 this.setCurrentlocation(portableGameSetup.getLabyrinth().mazeArrayWithLocations[newY][newX]);
             }
+        }
+
+        if(destinationReached()){
+            //TODO game is over initilize a new game
+            // new game not round
+            portableGameSetup.setIsGameOver(true);
         }
     }
     public void moveUp() {

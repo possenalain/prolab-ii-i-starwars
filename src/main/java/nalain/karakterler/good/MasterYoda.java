@@ -12,6 +12,7 @@ public class MasterYoda extends GoodCharacter {
         this.setName("masteryoda");
         this.setInitialLocation(new Location(4, 5));
         this.setCurrentlocation(getInitialLocation());
+        this.setHedef(portableGameSetup.getLabyrinth().findSignByIconName("trophy"));
         this.enkisayol = new ArrayList<>();
         
     }

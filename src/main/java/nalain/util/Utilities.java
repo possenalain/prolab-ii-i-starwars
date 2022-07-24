@@ -27,7 +27,7 @@ public class Utilities {
     public static void initializeFromFile() throws IOException {
         BufferedReader filein = null;
         try {
-            filein = new BufferedReader(new FileReader(portableGameSetup.getBASE_PATH_RESOURCES() + "gamesetup-medium.txt"));
+            filein = new BufferedReader(new FileReader(portableGameSetup.getBASE_PATH_RESOURCES() + "Harita.txt"));
             String row;
             while ((row = (String) filein.readLine()) != null) {
                 if (row.startsWith("Karakter")) {
@@ -43,9 +43,7 @@ public class Utilities {
         } catch (IOException e) {
 
             System.err.println("unable to read the document");
-
         }
-
         filein.close();
     }
     public static void initializeMazeArray() {

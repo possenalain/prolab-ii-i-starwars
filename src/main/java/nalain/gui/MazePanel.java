@@ -11,6 +11,7 @@ public class MazePanel extends BasePanel {
     private final int FACTOR;
     private final int DIMX;
     private final int DIMY;
+
     MazePanel() {
         DIMX = portableGameSetup.getLabyrinth().getSizeX();
         DIMY = portableGameSetup.getLabyrinth().getSizeY();
@@ -19,6 +20,7 @@ public class MazePanel extends BasePanel {
         this.setSize((DIMX * FACTOR), (DIMY * FACTOR));
         this.setBackground(Color.white);
     }
+
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
@@ -72,6 +74,7 @@ public class MazePanel extends BasePanel {
             g.fillRect(pathx + 1, pathy + 1, (FACTOR - 2), (FACTOR - 2));
         }
     }
+
     void drawSignsOnBoard(Graphics g) {
         //signs on boards
         for (LabyrinthSign sign : portableGameSetup.getLabyrinth().getLabyrinthSigns()) {
@@ -85,6 +88,7 @@ public class MazePanel extends BasePanel {
         }
 
     }
+
     void drawTheBoard(Graphics g) {
 
         for (int y = 0; y < DIMY * FACTOR; y += FACTOR) {
@@ -107,13 +111,14 @@ public class MazePanel extends BasePanel {
     private void drawGameOver(Graphics g) {
 
         g.setColor(Color.getHSBColor(0, 0, 0));
-        g.fillRect(150, 100, 400, 300);
+        g.fillRect( (int) (this.getWidth()*0.1), (int) (this.getHeight()*0.1) , (int) (this.getWidth()*0.8), (int) (this.getHeight()*0.8));
         g.setColor(Color.WHITE);
-        g.setFont(new Font("TimesRoman", Font.BOLD, 50));
-        g.drawString("YOU WON", 200, 250);
-
+        g.setFont(new Font("TimesRoman", Font.BOLD, FACTOR));
+        g.drawString((portableGameSetup.getRound() <= portableGameSetup.getIyikarakter().getCan()) ?
+                "YOU WON" : "Game Over", (int) ((this.getWidth()*0.32)), (int) ((this.getHeight()*0.48)));
 
     }
+
     private Color getColorByAbbr(String colorAbbr) {
         if (colorAbbr.equalsIgnoreCase("R")) {
             return Color.RED;
@@ -125,8 +130,9 @@ public class MazePanel extends BasePanel {
         }
         return Color.ORANGE;
     }
+
     private int calculateFactor(int DIMX, int DIMY) {
         //TODO dynamically
-        return 30;
+        return 40;
     }
 }

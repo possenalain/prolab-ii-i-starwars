@@ -9,6 +9,7 @@ import java.util.PriorityQueue;
 
 public class Algorithms {
     static PortableGameSetup portableGameSetup = PortableGameSetup.getInstance();
+
     public static ArrayList<Location> getShortestPathTo(Location from, Location destination) {
         return DiJkStra(from, destination);
     }
@@ -84,6 +85,7 @@ public class Algorithms {
         }
         return shortestPath;
     }
+
     public static ArrayList<Location> BFS(Location from, Location destination) {
         return null;
     }
