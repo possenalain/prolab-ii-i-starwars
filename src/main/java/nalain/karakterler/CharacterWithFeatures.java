@@ -17,7 +17,6 @@ public abstract class CharacterWithFeatures {
     protected String color="";
     protected int can;
     protected int stepSize;
-    protected int steps;
     protected Location initialLocation;
     protected Location currentlocation;
     protected Location hedef;

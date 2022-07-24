@@ -13,8 +13,8 @@ public abstract class Karakter extends CharacterWithFeatures {
             this.setHedef(portableGameSetup.getIyikarakter().getCurrentlocation());
     }
     protected int calculateSteps() {
-        //TODO
-        // add implementatioon how many steps to target
+        if(this.stepSize>0)
+            return (int) Math.ceil(this.getEnkisayol().size() / this.stepSize);
         return 0;
     }
     protected void calculateShortestPath() {
@@ -43,7 +43,6 @@ public abstract class Karakter extends CharacterWithFeatures {
                 ", color='" + color + '\'' +
                 ", can=" + can +
                 ", stepSize=" + stepSize +
-                ", steps=" + steps +
                 ", hedef=" + hedef +
                 '}';
     }
@@ -55,6 +54,5 @@ public abstract class Karakter extends CharacterWithFeatures {
                 ", in  " + calculateSteps() + " steps";
         portableGameSetup.getLogger().addLog(message);
     }
-
 }
 
