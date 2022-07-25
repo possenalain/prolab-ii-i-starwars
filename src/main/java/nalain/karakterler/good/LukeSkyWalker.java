@@ -8,7 +8,7 @@ public class LukeSkyWalker extends GoodCharacter {
     public LukeSkyWalker() {
         this.can = 3;
         this.name = "sky";
-        this.setInitialLocation(new Location(4, 5));
+        this.setInitialLocation(portableGameSetup.getLabyrinth().getCenter());
         this.setCurrentlocation(getInitialLocation());
         this.setHedef(portableGameSetup.getLabyrinth().findSignByIconName("trophy"));
         this.enkisayol = new ArrayList<>();

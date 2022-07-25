@@ -18,6 +18,7 @@ public class GameWindow extends JFrame {
 
         this.setTitle("STARWARs");
         this.setSize(660, 800);
+        this.setResizable(false);
         this.setLayout(new BorderLayout());
         this.setBackground(new Color(2, 3, 0));
         keysIamListeningTo = new Keys();

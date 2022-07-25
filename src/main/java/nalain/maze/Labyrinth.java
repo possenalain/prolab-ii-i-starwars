@@ -63,4 +63,7 @@ public class Labyrinth implements Cloneable {
         }
     }
 
+    public Location getCenter() {
+        return new Location((this.sizeX/2)-1,(this.sizeY/2)-1);
+    }
 }

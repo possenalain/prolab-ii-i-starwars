@@ -28,7 +28,8 @@ public class Utilities {
     public static void initializeFromFile() throws IOException {
         BufferedReader filein = null;
         try {
-            filein = new BufferedReader(new FileReader(portableGameSetup.getBASE_PATH_RESOURCES() + "Harita.txt"));
+            filein = new BufferedReader(new FileReader(
+                    portableGameSetup.getBASE_PATH_RESOURCES() +"maps/"+ "l2.txt"));
             String row;
             while ((row = filein.readLine()) != null) {
                 if (row.startsWith("Karakter")) {

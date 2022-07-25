@@ -17,7 +17,7 @@ public class MazePanel extends BasePanel {
 
         this.setSize((gameWindow.getWidth()), (gameWindow.getWidth()));
         this.setSize(646, 560);
-        this.setBackground(new Color(45, 51, 20));
+        this.setBackground(new Color(182, 159, 140));
 
 
         DIMX = portableGameSetup.getLabyrinth().getSizeX();
@@ -110,8 +110,8 @@ public class MazePanel extends BasePanel {
                 int wallpath = portableGameSetup.getLabyrinth().mazearray[j][i];
 
                 if (wallpath == 1) {//path
-                    g.setColor(Color.lightGray);
-                    g.fillRect(x + 1, y + 1, (XFACTOR - 2), (YFACTOR - 2));
+//                    g.setColor(Color.lightGray);
+//                    g.fillRect(x + 1, y + 1, (XFACTOR - 2), (YFACTOR - 2));
                 } else {//wall
                     g.setColor(Color.black);
                     g.fillRect(x + 1, y + 1, (XFACTOR - 2), (YFACTOR - 2));
