@@ -1,4 +1,4 @@
-package nalain.karakterler.bad;
+package nalain.bad;
 
 public class Kyloren extends BadCharacter {
     public Kyloren() {

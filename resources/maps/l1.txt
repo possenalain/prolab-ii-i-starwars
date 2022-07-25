@@ -1,0 +1,17 @@
+Signs:A,Coordinate:0 6,iconName:door
+Signs:B,Coordinate:5 0,iconName:door
+Signs:E,Coordinate:9 8,iconName:trophy
+
+Karakter:Stormtrooper,Kapi:A
+
+
+1	1	0	1	0	1	0	1	1	1
+0	0	1	0	1	1	1	1	1	0	
+0	0	0	1	1	0	0	0	0	0	
+1	1	0	0	1	1	1	0	1	0	
+0	0	0	0	1	1	0	0	0	1	
+1	0	0	0	0	1	0	1	0	1	
+1	1	1	0	1	1	1	1	1	0	
+1	1	0	0	1	1	1	1	0	0	
+0	0	1	0	1	0	1	0	0	1	
+1	0	1	0	0	0	1	0	1	0	

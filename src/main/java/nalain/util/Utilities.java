@@ -2,10 +2,10 @@ package nalain.util;
 
 import nalain.PortableGameSetup;
 import nalain.gui.GameWindow;
-import nalain.karakterler.bad.BadCharacter;
-import nalain.karakterler.bad.Darthvader;
-import nalain.karakterler.bad.Kyloren;
-import nalain.karakterler.bad.Stormtrooper;
+import nalain.bad.BadCharacter;
+import nalain.bad.Darthvader;
+import nalain.bad.Kyloren;
+import nalain.bad.Stormtrooper;
 import nalain.karakterler.good.LukeSkyWalker;
 import nalain.karakterler.good.MasterYoda;
 import nalain.maze.Labyrinth;
@@ -29,7 +29,7 @@ public class Utilities {
         BufferedReader filein = null;
         try {
             filein = new BufferedReader(new FileReader(
-                    portableGameSetup.getBASE_PATH_RESOURCES() +"maps/"+ "l2.txt"));
+                    portableGameSetup.getBASE_PATH_RESOURCES() +"maps/"+ "l3.txt"));
             String row;
             while ((row = filein.readLine()) != null) {
                 if (row.startsWith("Karakter")) {

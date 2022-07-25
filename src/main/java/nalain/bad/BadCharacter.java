@@ -1,12 +1,24 @@
-package nalain.karakterler.bad;
+package nalain.bad;
 
 import nalain.karakterler.Karakter;
+import nalain.maze.Location;
 
 public class BadCharacter extends Karakter {
     @Override
     public void moveAutomatically() {
-        this.aquireTarget();
-        this.calculateShortestPath();
+        if(this.getEnkisayol().size()>5){
+            int size=this.getEnkisayol().size();
+            Location lastAdded=this.getEnkisayol().get(size-1);
+
+            if(! lastAdded.isSameAs(portableGameSetup.getIyikarakter().getCurrentlocation()))
+            this.getEnkisayol().add(portableGameSetup.getIyikarakter().getCurrentlocation());
+            this.aquireTarget();
+        }
+        else{
+            this.aquireTarget();
+            this.calculateShortestPath();
+
+        }
 
         if (!this.getEnkisayol().isEmpty()) {
             int newLocationIndex = 1;
@@ -18,7 +30,6 @@ public class BadCharacter extends Karakter {
             this.getEnkisayol().subList(0, (newLocationIndex > 0 ? (newLocationIndex - 1) : 0)).clear();
             this.setCurrentlocation(this.getEnkisayol().remove(0));
         }
-
         this.log();
     }
 
