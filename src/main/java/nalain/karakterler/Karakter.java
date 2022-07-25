@@ -18,12 +18,14 @@ public abstract class Karakter extends CharacterWithFeatures {
             return (int) Math.ceil(this.getEnkisayol().size() / this.stepSize);
         return 0;
     }
+
     protected void calculateShortestPath() {
         this.currentlocation.reset();
         this.hedef.reset();
         portableGameSetup.getLabyrinth().resetLocationCosts();
         this.enkisayol = Algorithms.getShortestPathTo(this.currentlocation, this.hedef);
     }
+
     protected void moveTo(Location location) {
         this.setCurrentlocation(location);
         this.aquireTarget();
@@ -40,6 +42,7 @@ public abstract class Karakter extends CharacterWithFeatures {
         return this.getCurrentlocation()
                 .isSameAs(this.getHedef());
     }
+
     public String toString() {
 
         return "Karakter{" +

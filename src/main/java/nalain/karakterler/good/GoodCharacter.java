@@ -1,7 +1,6 @@
 package nalain.karakterler.good;
 
 import nalain.karakterler.Karakter;
-import nalain.maze.Location;
 
 public class GoodCharacter extends Karakter {
 
@@ -19,10 +18,11 @@ public class GoodCharacter extends Karakter {
             this.setCurrentlocation(this.getEnkisayol().remove(0));
         this.log();
     }
+
     @Override
     public void move() {
         this.moveAutomatically();
-        if(destinationReached()){
+        if (destinationReached()) {
             //TODO game is over initilize a new game
             // new game not round
             portableGameSetup.setIsGameOver(true);
@@ -32,8 +32,8 @@ public class GoodCharacter extends Karakter {
     protected void moveInDirection(int direction) {
 
 
-        int directionX[] = {0, 1, 0, -1};
-        int directionY[] = {-1, 0, 1, 0};
+        int[] directionX = {0, 1, 0, -1};
+        int[] directionY = {-1, 0, 1, 0};
 
         int newY = this.getCurrentlocation().getY() + directionY[direction];
         int newX = this.getCurrentlocation().getX() + directionX[direction];
@@ -49,12 +49,13 @@ public class GoodCharacter extends Karakter {
             }
         }
 
-        if(destinationReached()){
+        if (destinationReached()) {
             //TODO game is over initilize a new game
             // new game not round
             portableGameSetup.setIsGameOver(true);
         }
     }
+
     public void moveUp() {
         moveInDirection(0);
     }

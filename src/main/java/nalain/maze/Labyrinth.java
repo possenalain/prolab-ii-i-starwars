@@ -8,10 +8,10 @@ import java.util.ArrayList;
 @Getter
 @Setter
 public class Labyrinth implements Cloneable {
-    int sizeX;
-    int sizeY;
     public int[][] mazearray;
     public Location[][] mazeArrayWithLocations;
+    int sizeX;
+    int sizeY;
     ArrayList<LabyrinthSign> labyrinthSigns;
 
 
@@ -22,9 +22,11 @@ public class Labyrinth implements Cloneable {
         mazeArrayWithLocations = new Location[sizeY][sizeX];
         labyrinthSigns = new ArrayList<>();
     }
+
     public Labyrinth() {
         this(14, 11);
     }
+
     public Location findSignByName(String name) {
         for (LabyrinthSign sign : labyrinthSigns) {
             if (sign.getName().equalsIgnoreCase(name)) {
@@ -33,6 +35,7 @@ public class Labyrinth implements Cloneable {
         }
         return new Location(0, 0);
     }
+
     public Location findSignByIconName(String iconName) {
         for (LabyrinthSign sign : labyrinthSigns) {
             if (sign.getIconName().equalsIgnoreCase(iconName)) {
@@ -41,12 +44,9 @@ public class Labyrinth implements Cloneable {
         }
         return new Location(0, 0);
     }
-    public Boolean isObstacle(int x, int y) {
-        if (mazearray[y][x] == 1) {
-            return false;
-        }
 
-        return true;
+    public Boolean isObstacle(int x, int y) {
+        return mazearray[y][x] != 1;
     }
 
     @Override

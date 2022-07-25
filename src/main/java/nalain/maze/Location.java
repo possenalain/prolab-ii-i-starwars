@@ -9,34 +9,39 @@ import java.util.ArrayList;
 @Setter
 
 public class Location implements Comparable<Location> {
-    private int x;
-    private int y;
     Boolean duvar;
     ArrayList<Location> shortpath;
     int cost;
+    private int x;
+    private int y;
+
     public Location() {
         duvar = false;
         cost = 0;
         this.shortpath = new ArrayList<Location>();
     }
+
     public Location(int x, int y) {
         this.x = x;
         this.y = y;
         this.duvar = false;
         this.shortpath = new ArrayList<Location>();
     }
+
     @Override
     public int compareTo(Location o) {
         return this.getCost() - o.getCost();
     }
+
     public void reset() {
         cost = 0;
         this.shortpath = new ArrayList<Location>();
     }
 
-    public boolean isSameAs(Location location){
-        return (this.getX()==location.getX() && this.getY()==location.getY());
+    public boolean isSameAs(Location location) {
+        return (this.getX() == location.getX() && this.getY() == location.getY());
     }
+
     @Override
     public String toString() {
         return "{" +

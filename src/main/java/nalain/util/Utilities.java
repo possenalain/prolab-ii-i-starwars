@@ -24,12 +24,13 @@ public class Utilities {
     static ArrayList<String> characters = new ArrayList<String>();
     static ArrayList<String> maze = new ArrayList<String>();
     static ArrayList<String> indications = new ArrayList<String>();
+
     public static void initializeFromFile() throws IOException {
         BufferedReader filein = null;
         try {
-            filein = new BufferedReader(new FileReader(portableGameSetup.getBASE_PATH_RESOURCES() + "gamesetup-medium.txt"));
+            filein = new BufferedReader(new FileReader(portableGameSetup.getBASE_PATH_RESOURCES() + "Harita.txt"));
             String row;
-            while ((row = (String) filein.readLine()) != null) {
+            while ((row = filein.readLine()) != null) {
                 if (row.startsWith("Karakter")) {
                     characters.add(row);
                 } else if (row.startsWith("Signs")) {
@@ -37,25 +38,25 @@ public class Utilities {
                 } else if (row.startsWith("0") || row.startsWith("1")) {
                     maze.add(row);
                 } else {
-                    //System.out.println("the row doesn't follow requested pattern");
                 }
             }
         } catch (IOException e) {
-
-            System.err.println("unable to read the document");
+            System.out.println("init files error");
+            System.exit(0);
         }
         filein.close();
     }
+
     public static void initializeMazeArray() {
 
-        int rows=maze.size();
+        int rows = maze.size();
 
-        String columns[] = maze.get(0).split("\\s+");
+        String[] columns = maze.get(0).split("\\s+");
 
-        portableGameSetup.setLabyrinth(new Labyrinth(columns.length,rows) );
+        portableGameSetup.setLabyrinth(new Labyrinth(columns.length, rows));
 
         for (int i = 0; i < maze.size(); i++) {
-            String row[] = maze.get(i).split("\\s+");
+            String[] row = maze.get(i).split("\\s+");
             for (int j = 0; j < row.length; j++) {
                 portableGameSetup.getLabyrinth().mazearray[i][j] = Integer.valueOf(row[j]);
                 Location loc = new Location(j, i);
@@ -67,6 +68,7 @@ public class Utilities {
         //initialize the signs too
         initializeLabyrinthDoorsAsSigns();
     }
+
     public static void initializeGoodCharacter() {
 
         Scanner scan = new Scanner(System.in);
@@ -76,14 +78,16 @@ public class Utilities {
             portableGameSetup.setIyikarakter(new LukeSkyWalker());
         else if (choice == 2)
             portableGameSetup.setIyikarakter(new MasterYoda());
-
+        else
+            System.exit(0);
     }
+
     public static void initializeBadCharacters() {
 
         for (int i = 0; i < characters.size(); i++) {
 
             String row = characters.get(i);
-            String splittedrow[] = row.split("\\W");
+            String[] splittedrow = row.split("\\W");
 
             BadCharacter karacter = null;
 
@@ -105,11 +109,12 @@ public class Utilities {
             }
         }
     }
+
     public static void initializeLabyrinthDoorsAsSigns() {
 
         for (String row : indications) {
 
-            String splittedrow[] = row.split("\\W");
+            String[] splittedrow = row.split("\\W");
 
             String name = splittedrow[1];
             int x = Integer.parseInt(splittedrow[3]);
@@ -123,6 +128,7 @@ public class Utilities {
             portableGameSetup.getLabyrinth().getLabyrinthSigns().add(labyrinthSign);
         }
     }
+
     public static void InitializeGameWindow() {
         GameWindow gameWindow = new GameWindow();
         portableGameSetup.setGameWindow(gameWindow);

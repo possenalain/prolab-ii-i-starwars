@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class HealthPanel extends BasePanel {
     JProgressBar lifeProgressBar;
+
     HealthPanel() {
         this.setLocation(550, 25);
         this.setSize(300, 30);
@@ -21,6 +22,7 @@ public class HealthPanel extends BasePanel {
 
         this.add(lifeProgressBar);
     }
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         lifeProgressBar.setValue((1 + portableGameSetup.getIyikarakter().getCan() - portableGameSetup.getRound()));

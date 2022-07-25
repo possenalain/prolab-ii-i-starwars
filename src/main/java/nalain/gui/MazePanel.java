@@ -8,17 +8,23 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class MazePanel extends BasePanel {
-    private final int FACTOR;
+    private final int XFACTOR;
+    private final int YFACTOR;
     private final int DIMX;
     private final int DIMY;
 
-    MazePanel() {
+    MazePanel(GameWindow gameWindow) {
+
+        this.setSize((gameWindow.getWidth()), (gameWindow.getWidth()));
+        this.setSize(646, 560);
+        this.setBackground(new Color(45, 51, 20));
+
+
         DIMX = portableGameSetup.getLabyrinth().getSizeX();
         DIMY = portableGameSetup.getLabyrinth().getSizeY();
-        FACTOR = calculateFactor(DIMX, DIMY);
-        this.setLocation(0, 0);
-        this.setSize((DIMX * FACTOR), (DIMY * FACTOR));
-        this.setBackground(Color.white);
+
+        XFACTOR = Math.round(this.getWidth() / DIMX);
+        YFACTOR = (int) Math.ceil(this.getHeight() / DIMY);
     }
 
     public void paintComponent(Graphics g) {
@@ -46,17 +52,17 @@ public class MazePanel extends BasePanel {
         for (Karakter karakter : characters) {
 
             g.setColor(getColorByAbbr(karakter.getColor()));
-            int locx = karakter.getCurrentlocation().getX() * FACTOR;
-            int locy = karakter.getCurrentlocation().getY() * FACTOR;
+            int locx = karakter.getCurrentlocation().getX() * XFACTOR;
+            int locy = karakter.getCurrentlocation().getY() * YFACTOR;
 
-            g.fillRect(locx + 1, locy + 1, (FACTOR - 2), (FACTOR - 2));
+            g.fillRect(locx + 1, locy + 1, (XFACTOR - 2), (YFACTOR - 2));
 
             String imageName = karakter.getName().toLowerCase();
             Image karakterimage = this.getToolkit()
                     .getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/" + imageName + ".jpg");
 
             if (karakterimage != null) {
-                g.drawImage(karakterimage, (locx + 1), (locy + 1), (FACTOR - 2), (FACTOR - 2), this);
+                g.drawImage(karakterimage, (locx + 1), (locy + 1), (XFACTOR - 2), (YFACTOR - 2), this);
             }
             drawShortestPath(karakter, g);
         }
@@ -65,31 +71,31 @@ public class MazePanel extends BasePanel {
 
     private void drawShortestPath(Karakter karakter, Graphics g) {
 
-        String colorAbbr = (String) karakter.getColor();
+        String colorAbbr = karakter.getColor();
         g.setColor(getColorByAbbr(colorAbbr));
         for (int j = 0; j < karakter.getEnkisayol().size() - 1; j++) {
             Location loc = karakter.getEnkisayol().get(j);
-            int pathx = loc.getX() * FACTOR;
-            int pathy = loc.getY() * FACTOR;
-            g.fillRect(pathx + 1, pathy + 1, (FACTOR - 2), (FACTOR - 2));
+            int pathx = loc.getX() * XFACTOR;
+            int pathy = loc.getY() * YFACTOR;
+            g.fillRect(pathx + 1, pathy + 1, (XFACTOR - 2), (YFACTOR - 2));
         }
     }
 
     void drawSignsOnBoard(Graphics g) {
         //signs on boards
         for (LabyrinthSign sign : portableGameSetup.getLabyrinth().getLabyrinthSigns()) {
-            int x = (int) (sign.getCoordinates().getX() * FACTOR);
-            int y = (int) (sign.getCoordinates().getY() * FACTOR);
+            int x = sign.getCoordinates().getX() * XFACTOR;
+            int y = sign.getCoordinates().getY() * YFACTOR;
 
             g.setColor(Color.blue);
-            g.fillRect(x + 1, y + 1, (FACTOR - 2), (FACTOR - 2));
+            g.fillRect(x + 1, y + 1, (XFACTOR - 2), (YFACTOR - 2));
 
             String iconName = sign.getIconName();
             Image iconImage = this.getToolkit()
                     .getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/" + iconName + ".png");
 
             if (iconImage != null) {
-                g.drawImage(iconImage, (x + 1), (y + 1), (FACTOR - 2), (FACTOR - 2), this);
+                g.drawImage(iconImage, (x + 1), (y + 1), (XFACTOR - 2), (YFACTOR - 2), this);
             }
         }
 
@@ -97,18 +103,18 @@ public class MazePanel extends BasePanel {
 
     void drawTheBoard(Graphics g) {
 
-        for (int y = 0; y < DIMY * FACTOR; y += FACTOR) {
-            int j = y / FACTOR;
-            for (int x = 0; x < DIMX * FACTOR; x += FACTOR) {
-                int i = x / FACTOR;
+        for (int y = 0; y < DIMY * YFACTOR; y += YFACTOR) {
+            int j = y / YFACTOR;
+            for (int x = 0; x < DIMX * XFACTOR; x += XFACTOR) {
+                int i = x / XFACTOR;
                 int wallpath = portableGameSetup.getLabyrinth().mazearray[j][i];
 
                 if (wallpath == 1) {//path
                     g.setColor(Color.lightGray);
-                    g.fillRect(x + 1, y + 1, (FACTOR - 2), (FACTOR - 2));
+                    g.fillRect(x + 1, y + 1, (XFACTOR - 2), (YFACTOR - 2));
                 } else {//wall
                     g.setColor(Color.black);
-                    g.fillRect(x + 1, y + 1, (FACTOR - 2), (FACTOR - 2));
+                    g.fillRect(x + 1, y + 1, (XFACTOR - 2), (YFACTOR - 2));
                 }
 
             }
@@ -120,7 +126,7 @@ public class MazePanel extends BasePanel {
         g.setColor(Color.getHSBColor(0, 0, 0));
         g.fillRect((int) (this.getWidth() * 0.1), (int) (this.getHeight() * 0.1), (int) (this.getWidth() * 0.8), (int) (this.getHeight() * 0.8));
         g.setColor(Color.WHITE);
-        g.setFont(new Font("TimesRoman", Font.BOLD, FACTOR));
+        g.setFont(new Font("TimesRoman", Font.BOLD, XFACTOR));
         g.drawString((portableGameSetup.getRound() <= portableGameSetup.getIyikarakter().getCan()) ?
                 "YOU WON" : "Game Over", (int) ((this.getWidth() * 0.32)), (int) ((this.getHeight() * 0.48)));
 
@@ -137,15 +143,5 @@ public class MazePanel extends BasePanel {
         }
         return Color.ORANGE;
     }
-    private int calculateFactor(int DIMX, int DIMY) {
-        int factor = (int) Math.sqrt(DIMX * DIMY);
-        if (factor < 10)
-            return 50;
-        else if (factor < 20)
-            return 30;
-        else if (factor < 60)
-            return 20;
-        else
-            return 10;
-    }
+
 }

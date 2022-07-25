@@ -13,17 +13,15 @@ import java.util.ArrayList;
 public abstract class CharacterWithFeatures {
     protected String name;
     protected String type;
-    String entrance;
-    protected String color="";
+    protected String color = "";
     protected int can;
     protected int stepSize;
     protected Location initialLocation;
     protected Location currentlocation;
     protected Location hedef;
-
-
     protected PortableGameSetup portableGameSetup = PortableGameSetup.getInstance();
     protected ArrayList<Location> enkisayol = new ArrayList<>();
+    String entrance;
 
     protected abstract void aquireTarget();
 
@@ -36,6 +34,7 @@ public abstract class CharacterWithFeatures {
     public abstract void move();
 
     protected abstract boolean destinationReached();
+
     protected abstract void moveTo(Location location);
 
     protected abstract void reset();

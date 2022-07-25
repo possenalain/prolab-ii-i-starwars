@@ -35,8 +35,8 @@ public class Algorithms {
         PriorityQueue<Location> visitNext = new PriorityQueue<Location>();
 
 
-        int directionX[] = {0, 1, 0, -1};
-        int directionY[] = {-1, 0, 1, 0};
+        int[] directionX = {0, 1, 0, -1};
+        int[] directionY = {-1, 0, 1, 0};
 
         visitNext.offer(from);
 

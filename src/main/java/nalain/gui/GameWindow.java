@@ -9,49 +9,50 @@ import java.awt.event.KeyListener;
 
 public class GameWindow extends JFrame {
     PortableGameSetup portableGameSetup = PortableGameSetup.getInstance();
-    MazePanel mazepane;
-    HealthPanel healthpane;
+    MazePanel mazePanel;
+    HealthPanel healthPanel;
     LogsPanel logsPanel;
     Keys keysIamListeningTo;
+
     public GameWindow() {
 
         this.setTitle("STARWARs");
-        this.setSize(800, 800);
-        this.setLocation(250, 100);
-        this.setLayout(null);
-        this.setResizable(false);
-        this.toFront();
-        this.requestFocus();
+        this.setSize(660, 800);
+        this.setLayout(new BorderLayout());
+        this.setBackground(new Color(2, 3, 0));
         keysIamListeningTo = new Keys();
         this.addKeyListener(keysIamListeningTo);
         Container cont = this.getContentPane();
 
-        mazepane = new MazePanel();
-        healthpane = new HealthPanel();
+
+        mazePanel = new MazePanel(this);
+        healthPanel = new HealthPanel();
         logsPanel = new LogsPanel();
 
-        cont.add(mazepane);
-
+        cont.setLayout(new BorderLayout());
 
         cont.setBackground(Color.getHSBColor(74, (float) 0.10, (float) 0.12));
-        cont.add(healthpane);
-        cont.add(logsPanel);
 
+        cont.add(healthPanel, BorderLayout.NORTH);
+        cont.add(mazePanel, BorderLayout.CENTER);
+        cont.add(logsPanel, BorderLayout.SOUTH);
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
+
     public void repaintWindow() {
 
-        healthpane.repaint();
+        healthPanel.repaint();
         logsPanel.refleshLogs();
-        mazepane.repaint();
+        mazePanel.repaint();
         this.repaint();
     }
+
     public void removeKeyListeners() {
-        ;
         this.removeKeyListener(keysIamListeningTo);
     }
+
     private class Keys implements KeyListener {
         @Override
         public void keyPressed(KeyEvent evt) {

@@ -13,6 +13,7 @@ public class LukeSkyWalker extends GoodCharacter {
         this.setHedef(portableGameSetup.getLabyrinth().findSignByIconName("trophy"));
         this.enkisayol = new ArrayList<>();
     }
+
     public void reset() {
         this.setCurrentlocation(this.getInitialLocation());
         //mode auto play he will continuously get a safer way
