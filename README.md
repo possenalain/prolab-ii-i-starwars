@@ -52,7 +52,7 @@ gibi kütüphanelerden yararlanılmıştır.
 Proje kurulumu oldukça açıklayıcıdır. Projeyi yerel makinenize klonladıktan sonra,
 favori IDE'nizi kullanarak projeyi içe aktarın ve maven kullanarak oluşturun. and you are good to go...
 
-![algorithm running](resources\shots\running.jpg)
+![algorithm running](resources\shots\func.jpg)
 
 ### Installation
 1. Clone the repo
