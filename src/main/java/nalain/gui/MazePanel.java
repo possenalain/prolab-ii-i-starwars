@@ -26,7 +26,6 @@ public class MazePanel extends BasePanel {
         XFACTOR = Math.round(this.getWidth() / DIMX);
         YFACTOR = (int) Math.ceil(this.getHeight() / DIMY);
     }
-
     public void paintComponent(Graphics g) {
 
         super.paintComponent(g);
@@ -47,7 +46,7 @@ public class MazePanel extends BasePanel {
 
         ArrayList<Karakter> characters = new ArrayList<>();
         characters.addAll(portableGameSetup.getKotukarakter());
-        characters.add(0, portableGameSetup.getIyikarakter());
+        characters.add(portableGameSetup.getIyikarakter());
 
         for (Karakter karakter : characters) {
 

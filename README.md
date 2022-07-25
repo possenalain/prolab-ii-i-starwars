@@ -33,12 +33,6 @@ Here are characters and classes at your disposal all of them have different prop
 * nalain.Userinterface
 
 
-<!--
-<div style="margin:1% 10%;">
-<img alt="project screenshot" align="center" height="500" src="res/finalstate.jpg" width="500"/>
-</div>
--->
-
 ### Built With
 
 Bu proje **`Java`** programlama dilinde geliştirilmiş.
@@ -58,7 +52,7 @@ gibi kütüphanelerden yararlanılmıştır.
 Proje kurulumu oldukça açıklayıcıdır. Projeyi yerel makinenize klonladıktan sonra,
 favori IDE'nizi kullanarak projeyi içe aktarın ve maven kullanarak oluşturun. and you are good to go...
 
-![algorithm running](resources/running.jpg)
+![algorithm running](resources\shots\running.jpg)
 
 ### Installation
 1. Clone the repo
