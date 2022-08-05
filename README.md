@@ -11,10 +11,13 @@ Kocaeli universitesi, prolab II I
 This is a shortest distance problem. 
 
 To begin with a grid of n x m size is created.
+<br/>
 There will be a grid with obstacles as walls and pathway. 
+<br/>
 There are good and bad characters with different capacity and specialities.
+<br/>
 Characters are placed on the grid.
-
+<br/>
 Each character will have an entry point or initial location on the grid.
 
 <b>While a good characters tries to reach the end point to get a trophy, hunters or bad characters try to reach him by finding the shortest path and following it.</b>
@@ -67,7 +70,7 @@ there are two main characters refered to as good characters in the game.
 
 
 ## Up and Running
-![algorithm running](resources\shots\func.jpg)
+![algorithm running](.\resources\shots\func.jpg)
 
 ### Built With
 
