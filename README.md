@@ -1,7 +1,6 @@
 # prolab-ii-i-starwars
 
 Kocaeli universitesi, prolab II I
-
 <br />
 
 
@@ -9,71 +8,100 @@ Kocaeli universitesi, prolab II I
 ## About The Project
 
 <p>
-Bu bir oyun programıdır.
-İyi nalain.karakterler ve kötü nalain.karakterler bulunmakta.
-kullanıcı birbirinden ayrı özellikleri olan iyi karakterlerden herhangi birini seçtikten sonra oyunu başlatmaktadır.
-Oyuncunun amacı labirent çıkışına kötü karakterlere yakalanmadan varabilmektir.
-Kötü karakterlerin türü, sayısı ve labirentin hangi kapısında olacağı verilen Harita.txt dosyasında yazmaktadır.
-Kullanıcı çıkışa varana veya kötü karakter, iyi karakteri yakalayana dek oyun devam etmekte;
+This is a shortest distance problem. 
 
-yakalandığında ise iyi karakterin canı bitene değin yeniden başlamaktadır.
+To begin with a grid of n x m size is created.
+There will be a grid with obstacles as walls and pathway. 
+There are good and bad characters with different capacity and specialities.
+Characters are placed on the grid.
+
+Each character will have an entry point or initial location on the grid.
+
+<b>While a good characters tries to reach the end point to get a trophy, hunters or bad characters try to reach him by finding the shortest path and following it.</b>
 </p>
 
-## Usage
+## Characters
 
-Here are characters and classes at your disposal all of them have different props
+### Good
 
-* nalain.karakterler.bad.Darthvader
-* karakter
-* nalain.karakterler.bad.Kyloren
-* nalain.maze.Location
-* nalain.karakterler.good.LukeSkyWalker
-* nalain.karakterler.good.MasterYoda
-* nalain.karakterler.bad.Stormtrooper
-* nalain.Userinterface
+there are two main characters refered to as good characters in the game.
+#### LukeSkyWalker
+   - LukeSkyWalker can move n steps in a given direction( automatically or controlled by user)
+   - LukeSkyWalker will have limited life compared to othere characters he is the weakest.
+   ...
+   
+#### Master Yoda
+   - Same as LukeSkyWalker, he can move n steps in any direction
+   - Master yoda is a die hard and has 2 times longer life than LukeSkyWalker
+   - Master yoda can use doors on the board as shortcut or portals to the otherside of the board.
+   ...
+### Bad [ Hunters ]
 
+<p>- It is the purpose of a hunter to find the shortest path the good character which is a moving target. </p>
+
+#### Kyloren 
+   <p>
+   Considerably the weakest of all. 
+   <br />
+   He can move 1 step(s)
+   <br />
+   </p>
+
+#### StormTrooper
+   <p>
+   Can move 2 steps in direction.
+   <br />
+   Can use doors as getway to the other side
+   <br />
+   Has a limited number of times he can go through walls i.e obstacles.
+   </p>
+
+#### DarthVader
+   <p>
+   Can move n steps in a given direction. 
+   <br />
+   He can use doors. 
+   <br />
+   Can move though walls n given times.
+   </p>
+
+
+## Up and Running
+![algorithm running](resources\shots\func.jpg)
 
 ### Built With
 
-Bu proje **`Java`** programlama dilinde geliştirilmiş.
-Projeyi gerçeklerken 
-
-* java.util.ArrayList, 
-* java.awt.Color, 
-* java.util.Scanner, 
-* java.IO.BufferedReader, 
-* java.io.FileReader, 
-* java.io.IOException 
-
-gibi kütüphanelerden yararlanılmıştır.
-
+ The project is sorely build in **`Java`**.
+ 
+ 
 ## Getting Started
 
-Proje kurulumu oldukça açıklayıcıdır. Projeyi yerel makinenize klonladıktan sonra,
-favori IDE'nizi kullanarak projeyi içe aktarın ve maven kullanarak oluşturun. and you are good to go...
+In your favourite Java IDE you will need to clone this repository.
+maven will set up all required dependencies.
+run UserInterface java file and you are good to go...
 
-![algorithm running](resources\shots\func.jpg)
-
-### Installation
-1. Clone the repo
-   ```sh
-   git https://github.com/possenalain/prolab-ii-i-starwars.git
-   ```
-2. Import the project into your IDE.
-3. build with maven.
-
-
-<!-- USAGE EXAMPLES -->
+   ### Installation
+   1. Clone the repo
+      ```sh
+      git https://github.com/possenalain/prolab-ii-i-starwars.git
+      ```
+   2. Import the project into your IDE.
+   3. build with maven.
 
 
-<!-- ROADMAP -->
-## catalog
+## Catalog
 
-- [x] Program harita.txt dosyasını okur.
-- [x] harita.txt dosyası okurken ilk sıradan başlayarak karakter bilgileri okur ve 0 ile 1 oluşan labirent bilgiyi okur.
-- [x] Okunduğu bilgilerinden kotu karakter listi oluşturulur ve labirenti çizilir.
+- [x] Reading harita.txt (bootstraping file) the game gets initialized.
+- [x] choose with which character you would play as.
+- [x] game board (labyrinth). is the created thus the game starts.
+- [x] ...
 
 
+## issues
+
+<p>Depending on the size of the labyrinth represented as a matrix the time it takes to find the shortest path gets high</p>
+
+<p>In the future I intend to use dynamic programming and find all best routes from any point to anyother on the grid instead of recalculating every single time a character makes a move. </p>
 <!-- CONTRIBUTING -->
 ## Contributing
 
