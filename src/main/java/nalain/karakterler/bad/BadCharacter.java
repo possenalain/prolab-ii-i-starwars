@@ -1,4 +1,4 @@
-package nalain.bad;
+package nalain.karakterler.bad;
 
 import nalain.karakterler.Karakter;
 import nalain.maze.Location;

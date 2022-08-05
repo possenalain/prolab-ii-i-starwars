@@ -1,4 +1,4 @@
-package nalain.bad;
+package nalain.karakterler.bad;
 
 public class Stormtrooper extends BadCharacter {
     public Stormtrooper() {

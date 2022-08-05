@@ -1,4 +1,4 @@
-package nalain.bad;
+package nalain.karakterler.bad;
 
 public class Darthvader extends BadCharacter {
     public Darthvader() {
