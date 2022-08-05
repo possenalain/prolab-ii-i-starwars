@@ -70,7 +70,7 @@ there are two main characters refered to as good characters in the game.
 
 
 ## Up and Running
-![algorithm running](.\resources\shots\func.jpg)
+![algorithm running](resources/shots/func.jpg)
 
 ### Built With
 
