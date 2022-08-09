@@ -17,7 +17,7 @@ public class MazePanel extends BasePanel {
 
         this.setSize((gameWindow.getWidth()), (gameWindow.getWidth()));
         this.setSize(646, 560);
-        this.setBackground(new Color(182, 159, 140));
+        this.setBackground(new Color(182, 159, 140, 178));
 
 
         DIMX = portableGameSetup.getLabyrinth().getSizeX();
@@ -58,7 +58,7 @@ public class MazePanel extends BasePanel {
 
             String imageName = karakter.getName().toLowerCase();
             Image karakterimage = this.getToolkit()
-                    .getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/" + imageName + ".jpg");
+                    .getImage(portableGameSetup.getBASE_PATH_RESOURCES() + "images/" + imageName + ".png");
 
             if (karakterimage != null) {
                 g.drawImage(karakterimage, (locx + 1), (locy + 1), (XFACTOR - 2), (YFACTOR - 2), this);
@@ -133,14 +133,14 @@ public class MazePanel extends BasePanel {
 
     private Color getColorByAbbr(String colorAbbr) {
         if (colorAbbr.equalsIgnoreCase("R")) {
-            return Color.RED;
+            return new Color(217, 238, 150, 90);
         } else if (colorAbbr.equalsIgnoreCase("B")) {
-            return Color.getHSBColor(150, (float) 0.8, (float) 0.61);
+            return new Color(72, 0, 255, 94);
         }
         if (colorAbbr.equalsIgnoreCase("M")) {
-            return Color.MAGENTA;
+            return new Color(187, 16, 19, 126);
         }
-        return Color.ORANGE;
+        return new Color(0, 119, 255, 108);
     }
 
 }
