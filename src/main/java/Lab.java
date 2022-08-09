@@ -1,46 +1,27 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Random;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.*;
+
+@NoArgsConstructor
+@Getter
+@Setter
 
 public class Lab {
 
 
     public static void main(String[] args) {
 
-        String BASE_PATH_RESOURCES = "./resources/";
-        int sizes[] = {30};
-        String names[] = {"l1", "l2", "l3", "l4", "l5", "l6", "l7", "l8", "l9", "l10", "l11"};
-        for (int o = 0; o < sizes.length; o++) {
-            int size = sizes[o];
-            String name = names[o];
 
-            Random random = new Random();
-
-            try {
-                FileWriter myWriter = new FileWriter(BASE_PATH_RESOURCES + name + ".txt");
-                BufferedWriter bw = new BufferedWriter(myWriter);
-
-                for (int y = 0; y < size; y++) {
-                    String line = "";
-                    for (int i = 0; i < size; i++) {
-                        if (i == y && (y+1 == size / 2)) {
-                            line += "1\t";
-                        } else{
-                            line += (random.nextInt(100)<70 ? "1" : "0") + "\t";
-                        }
+        List<Integer> randomized = new ArrayList<Integer>();
+        randomized.addAll(List.of(1,2,3,4,5,6));
 
 
-                    }
-                    bw.append(line);
-                    bw.newLine();
-                }
-                bw.close();
-            } catch (IOException e) {
-                System.out.println("cant write to file");
-            }
-        }
+        Collections.shuffle(randomized);
 
+        System.out.println(randomized);
 
     }
+
 }
